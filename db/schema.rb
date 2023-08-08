@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_08_215253) do
+ActiveRecord::Schema.define(version: 2023_08_08_234525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2023_08_08_215253) do
     t.integer "runs"
     t.integer "RBI"
     t.integer "stolen_base"
-    t.integer "errors"
+    t.integer "field_error"
     t.float "fielding_percentage"
     t.float "innings_pitched"
     t.float "ERA"
