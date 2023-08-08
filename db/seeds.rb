@@ -1,7 +1,98 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+require 'csv'
+
+csv_file_path = Rails.root.join('db', 'players.csv')
+
+# Read and seed data from the CSV file
+CSV.foreach(csv_file_path, headers: true) do |row|
+  Player.create!(
+    team_id: row['team_id'],
+    name: row['name'],
+    position: row['position'],
+    graduation_year: row['graduation_year'],
+    dominate_hand: row['dominate_hand'],
+    jersey_number: row['jersey_number']
+  )
+end
+
+
+# # Create a specific user
+# User.create!(
+#   address: '4732 Kingsley Dr.',
+#   email: 'tnthreat33@gmail.com',
+#   password_digest: '123',
+#   username: 'rhamby95',
+#   first_name: 'Rachel',
+#   last_name: 'Hamby'
+# )
+
+# # Create additional random users
+# 4.times do
+#   User.create!(
+#     address: Faker::Address.full_address,
+#     email: Faker::Internet.email,
+#     password_digest: 'password',
+#     username: Faker::Internet.username,
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name
+#   )
+# end
+
+# Team.create!(
+#   user_id: 1,
+#   address: 'Greenwood, IN',
+#   wins: 3,
+#   loses: 0,
+#   name: 'Center Grove High School',
+#   nickname: 'Trojans'
+# )
+# Team.create!(
+#   user_id: 2,
+#   address: 'Whiteland, IN',
+#   wins: 2,
+#   loses: 1,
+#   name: 'Whiteland High School',
+#   nickname: 'Warriors'
+# )
+# Team.create!(
+#   user_id: 3,
+#   address: 'Zionsville, IN',
+#   wins: 3,
+#   loses: 1,
+#   name: 'Zionsville High School',
+#   nickname: 'Eagles'
+# )
+# Team.create!(
+#   user_id: 4,
+#   address: 'Pendleton, IN',
+#   wins: 3,
+#   loses: 1,
+#   name: 'Pendleton Heights High School',
+#   nickname: 'Arabians'
+# )
+# Game.create!(
+#       home_team_id: 1,
+#       away_team_id: 2,
+#       date: Date.new(2023, 3, 28),
+#       city: "Greenwood",
+#       state: "IN",
+#     )
+#  Game.create!(
+#       home_team_id: 3,
+#       away_team_id: 1,
+#       date: Date.new(2023, 3, 29),
+#       city: "Pendleton",
+#       state: "IN",
+#     )
+# Game.create!(
+#         home_team_id: 4,
+#         away_team_id: 1,
+#         date: Date.new(2023, 3, 31),
+#         city: "Pendleton",
+#         state: "IN",
+#       )
+
+
+
+
