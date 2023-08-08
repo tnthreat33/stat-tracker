@@ -1,42 +1,42 @@
-require 'faker'
+# require 'faker'
 
-require 'csv'
+# require 'csv'
 
-# csv_file_path = Rails.root.join('db', 'players.csv')
+# # csv_file_path = Rails.root.join('db', 'players.csv')
+
+# # # Read and seed data from the CSV file
+# # CSV.foreach(csv_file_path, headers: true) do |row|
+# #   Player.create!(
+# #     team_id: row['team_id'],
+# #     name: row['name'],
+# #     position: row['position'],
+# #     graduation_year: row['graduation_year'],
+# #     dominate_hand: row['dominate_hand'],
+# #     jersey_number: row['jersey_number']
+# #   )
+# # end
+# csv_file_path = Rails.root.join('db', 'game_stats.csv')
 
 # # Read and seed data from the CSV file
 # CSV.foreach(csv_file_path, headers: true) do |row|
-#   Player.create!(
-#     team_id: row['team_id'],
-#     name: row['name'],
-#     position: row['position'],
-#     graduation_year: row['graduation_year'],
-#     dominate_hand: row['dominate_hand'],
-#     jersey_number: row['jersey_number']
-#   )
-# end
-
-csv_file_path = Rails.root.join('db', 'game_stats.csv')
-
-# Read and seed data from the CSV file
-CSV.foreach(csv_file_path, headers: true) do |row|
-  GameStat.create!(
-    game_id: row['game_id'],
-    player_id: row['player_id'],
-    played: row['played'],
-    batting_average: row['batting_average'],
-    at_bat: row['at_bat'],
-    hits: row['hits'],
-    runs: row['runs'],
-    RBI: row['RBI'],
-    stolen_base: row['stolen_base'],
-    errors: row['errors'],
-    fielding_percentage: row['fielding_percentage'],
-    innings_pitched: row['innings_pitched'],
-    ERA: row['ERA'],
-    K: row['K']
-  )
-end
+#     GameStat.create!(
+#       game_id: row['game_id'],
+#       player_id: row['player_id'],
+#       played: row['played'],
+#       batting_average: row['batting_average'],
+#       at_bat: row['at_bat'],
+#       hits: row['hits'],
+#       runs: row['runs'],
+#       RBI: row['RBI'],
+#       stolen_base: row['stolen_base'],
+#       field_error: row['field_error'],  
+#       fielding_percentage: row['fielding_percentage'],
+#       innings_pitched: row['innings_pitched'],
+#       ERA: row['ERA'],
+#       K: row['K']
+#     )
+#   end
+  
 
 # # Create a specific user
 # User.create!(
