@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { teamRemoved } from "./teamsSlice";
 
 function Team({ team }) {
+    console.log(team)
   const dispatch = useDispatch();
   function handleDeleteClick() {
-    dispatch(restaurantRemoved(team.id));
+    dispatch(teamRemoved(team.id));
   }
   return (
     <div>
