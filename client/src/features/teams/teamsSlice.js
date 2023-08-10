@@ -5,8 +5,9 @@ export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {
     // return a Promise containing the data we want
     return fetch("/teams")
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => data);
   });
+
 
 const teamsSlice = createSlice({
   name: "teams",
