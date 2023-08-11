@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function TeamDetails() {
   const { teamName } = useParams();
@@ -11,9 +12,13 @@ function TeamDetails() {
     return <div>Team not found.</div>;
   }
 
-  // Now you can use the `team` data to display team details
   return (
     <div>
+      <p>
+      <Link to={{ pathname: `/teams`}}>
+          Back To Teams
+        </Link>
+        </p>
       <h2> {team.name}  " {team.nickname} "</h2>
       <ul>
         <li> {team.address}</li>
