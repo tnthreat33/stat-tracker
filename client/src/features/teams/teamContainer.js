@@ -10,10 +10,9 @@ function TeamContainer() {
   const status = useSelector((state) => state.teams.status);
 
   useEffect(() => {
-    if (status === "idle") {
-      dispatch(fetchTeams());
-    }
-  }, [status, dispatch]);
+    dispatch(fetchTeams()); 
+  }, [dispatch]);
+
 
   return (
     <div>

@@ -1,23 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { teamRemoved } from "./teamsSlice";
+import { Link } from "react-router-dom";
 
 function Team({ team }) {
-  const dispatch = useDispatch();
-
   if (!team) {
     return <div>Loading...</div>;
-  }
-
-  function handleDeleteClick() {
-    dispatch(teamRemoved(team.id));
   }
 
   return (
     <div>
       <li>
-        {team.name}
-        <button onClick={handleDeleteClick}>DELETE Team</button>
+        {team.name}{" "}
+        <Link to={{ pathname: `/teams/${team.name}`, state: { team } }}>
+          Click for Team Details
+        </Link>
       </li>
     </div>
   );
