@@ -13,8 +13,14 @@ function NavBar() {
       <nav>
       <h4>Stat Tracker</h4>
         <ul>
+        <li>
+            <NavLink to="/stats">All Stats</NavLink>
+          </li>
           <li>
             <NavLink to="/teams">All Teams</NavLink>
+          </li>
+          <li>
+            <NavLink to="/"> Dashboard</NavLink>
           </li>
           {/* <li>
             <NavLink to="/courts">Courts</NavLink>

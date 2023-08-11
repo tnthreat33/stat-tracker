@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import teamsReducer from "./features/teams/teamsSlice";
-//import reviewsReducer from "./features/reviews/reviewsSlice";
+import statsReducer from "./features/game_stats/statSlice";
 
 const store = configureStore({
   reducer: {
     teams: teamsReducer,
-    //reviews: reviewsReducer,
+    stats: statsReducer,
   },
 });
 
