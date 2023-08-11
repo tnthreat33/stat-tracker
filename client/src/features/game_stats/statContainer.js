@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStats } from "./statSlice";
+import Stats from "./stats";
 
 
 function StatContainer() {
@@ -15,7 +16,10 @@ function StatContainer() {
   console.log(stats)
 
   return (
+    <div>
     <p> all stats </p>
+    <Stats stats={stats} />
+    </div>
   );
 }
 
