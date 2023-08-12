@@ -5,7 +5,7 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
     // return a Promise containing the data we want
     return fetch("/game_stats")
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => data);
   });
 
 
