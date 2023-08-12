@@ -8,6 +8,7 @@
     left: 0;
     top: 0;
     bottom: 0;
+    color: white
   }
   
   .navbar header {
@@ -25,7 +26,7 @@
   }
   
   .navbar li a {
-    color: #333;
+    color: white;
     text-decoration: none;
   }
   
@@ -34,6 +35,6 @@
   }
   
   .navbar li.active a {
-    color: #000;
+    color: white;
   }
   
