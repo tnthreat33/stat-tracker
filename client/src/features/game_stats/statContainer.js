@@ -19,12 +19,13 @@ function StatContainer() {
     return (
       <div>
         <p>All stats</p>
-        <Stats stats={stats} />
         <button onClick={() => setInputVisible(!isInputVisible)}>
           Add New Stat
         </button>
         {isInputVisible && <StatInput />} {/* Render StatInput if isInputVisible is true */}
-      </div>
+     
+        <Stats stats={stats} />
+        </div>
     );
   }
   

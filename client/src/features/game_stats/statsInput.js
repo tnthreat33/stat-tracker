@@ -4,8 +4,8 @@ import { statAdded } from "./statSlice";
 import Dropdown from "./dropdown";
 
 function StatInput() {
-    const [selectedHomeTeam, setSelectedHomeTeam] = useState("");
-    const [selectedAwayTeam, setSelectedAwayTeam] = useState("");
+    const [selectedTeam, setSelectedTeam] = useState("");
+    
     const [selectedPlayer, setSelectedPlayer] = useState("");
     const [date, setDate] = useState("");
     const [era, setERA] = useState("");
@@ -19,14 +19,56 @@ function StatInput() {
     const [inningsPitched, setInningsPitched] = useState("");
     const [runs, setRuns] = useState("");
     const [stolenBase, setStolenBase] = useState("");
+
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Create an object with the collected data
+    const newStat = {
+        game_id: selectedTeam.id,
+        player_id: selectedPlayer.id,
+      date: date,
+      ERA: era,
+      K: k,
+      RBI: rbi,
+      fielding_percentage: fieldingPercentage,
+      batting_average:ba,
+      at_bat: atBat,
+      fielding_error: errors,
+      hits: hits,
+      innings_pitched: inningsPitched,
+      runs: runs,
+      stolen_base: stolenBase
+    };
+
+    // Dispatch the action to send the new game stat data to the backend
+    dispatch(statAdded(newStat));
+
+    setDate("");
+    setERA("");
+    setK("");
+    setRBI("");
+    setAtBat("");
+    setBA("");
+    setErrors("");
+    setFieldingPercentage("");
+    setHits("");
+    setInningsPitched("");
+    setRuns("");
+    setStolenBase("");
+    setSelectedTeam("");
+    setSelectedPlayer("");
+
+  };
   
-    const handleHomeTeamSelect = (teamId) => {
-      setSelectedHomeTeam(teamId);
+    const handleTeamSelect = (teamId) => {
+      setSelectedTeam(teamId);
     };
   
-    const handleAwayTeamSelect = (teamId) => {
-      setSelectedAwayTeam(teamId);
-    };
+   
   
     const handlePlayerSelect = (playerId) => {
       setSelectedPlayer(playerId);
@@ -41,8 +83,7 @@ function StatInput() {
       });
       return players;
     });
-  console.log(availableTeams)
-  console.log(availablePlayers)
+  
     // Event handlers for input changes
     const handleDateChange = (event) => {
       setDate(event.target.value);
@@ -84,10 +125,11 @@ function StatInput() {
         setStolenBase(event.target.value);
       };
   
-    // ... other event handlers for other input fields
+    
   
     return (
       <div>
+        <form onSubmit={handleSubmit}>
         <h2>Add New Stat</h2>
         <label>Date:</label>
         <input type="date" value={date} onChange={handleDateChange} />
@@ -114,13 +156,12 @@ function StatInput() {
         <label>Stolen Bases:</label>
         <input type="number" value={stolenBase} onChange={handleStolenBasesChange} />
 
-        <label>Home Team:</label>
-        <Dropdown options={availableTeams} onSelect={handleHomeTeamSelect} />
-        <label>Away Team:</label>
-        <Dropdown options={availableTeams} onSelect={handleAwayTeamSelect} />
+        <label>Team:</label>
+        <Dropdown options={availableTeams} onSelect={handleTeamSelect} />
         <label>Player:</label>
         <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
-        <button>Add Stat</button>
+        <button type="submit">Add Stat</button>
+        </form>
       </div>
     );
   }

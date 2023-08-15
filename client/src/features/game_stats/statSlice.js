@@ -7,7 +7,26 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
       .then((response) => response.json())
       .then((data) => data);
   });
-
+  export const addGameStat = createAsyncThunk("stats/addGameStat", async (newStat) => {
+    try {
+      const response = await fetch("/game_stats", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newStat),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to add game stat");
+      }
+  
+      const data = await response.json();
+      return data; // You might want to return the newly added stat data
+    } catch (error) {
+      throw error;
+    }
+  });
 
 const statSlice = createSlice({
   name: "stats",
