@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { statAdded } from "./statSlice";
 import Dropdown from "./dropdown";
 
-function StatInput() {
-    const [selectedTeam, setSelectedTeam] = useState("");
+function StatInput({stats}) {
+    const [selectedGame, setSelectedGame] = useState("");
     
     const [selectedPlayer, setSelectedPlayer] = useState("");
-    const [date, setDate] = useState("");
+    
     const [era, setERA] = useState("");
     const [k, setK] = useState("");
     const [rbi, setRBI] = useState("");
@@ -28,9 +28,9 @@ function StatInput() {
 
     // Create an object with the collected data
     const newStat = {
-        game_id: selectedTeam.id,
+        game_id: selectedGame.id,
         player_id: selectedPlayer.id,
-      date: date,
+      
       ERA: era,
       K: k,
       RBI: rbi,
@@ -47,7 +47,7 @@ function StatInput() {
     // Dispatch the action to send the new game stat data to the backend
     dispatch(statAdded(newStat));
 
-    setDate("");
+    
     setERA("");
     setK("");
     setRBI("");
@@ -59,13 +59,13 @@ function StatInput() {
     setInningsPitched("");
     setRuns("");
     setStolenBase("");
-    setSelectedTeam("");
+    setSelectedGame("");
     setSelectedPlayer("");
 
   };
   
-    const handleTeamSelect = (teamId) => {
-      setSelectedTeam(teamId);
+    const handleGameSelect = (gameId) => {
+      setSelectedGame(gameId);
     };
   
    
@@ -75,7 +75,9 @@ function StatInput() {
     };
   
     // Fetch available teams and players from your Redux store or API
-    const availableTeams = useSelector((state) => state.teams.entities);
+    const availableGames = useSelector((state) => state.stats.availableGames);
+    console.log(availableGames)
+    
     const availablePlayers = useSelector((state) => {
       const players = [];
       state.teams.entities.forEach((team) => {
@@ -83,11 +85,6 @@ function StatInput() {
       });
       return players;
     });
-  
-    // Event handlers for input changes
-    const handleDateChange = (event) => {
-      setDate(event.target.value);
-    };
   
     const handleERAChange = (event) => {
       setERA(event.target.value);
@@ -131,8 +128,7 @@ function StatInput() {
       <div>
         <form onSubmit={handleSubmit}>
         <h2>Add New Stat</h2>
-        <label>Date:</label>
-        <input type="date" value={date} onChange={handleDateChange} />
+        
         <label>ERA:</label>
         <input type="number" step="0.01" value={era} onChange={handleERAChange} />
         <label>K:</label>
@@ -156,8 +152,16 @@ function StatInput() {
         <label>Stolen Bases:</label>
         <input type="number" value={stolenBase} onChange={handleStolenBasesChange} />
 
-        <label>Team:</label>
-        <Dropdown options={availableTeams} onSelect={handleTeamSelect} />
+        <label>Game:</label>
+        <select onSelect={handleGameSelect}>
+      <option value="">Select an option</option>
+      {availableGames.map((option) => (
+        <option key={option.id} value={option.id}>
+          {option.away_team} vs. {option.home_team}
+        </option>
+      ))}
+    </select>
+        
         <label>Player:</label>
         <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
         <button type="submit">Add Stat</button>
