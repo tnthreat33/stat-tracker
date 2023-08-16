@@ -75,8 +75,12 @@ function StatInput({stats}) {
     };
   
     // Fetch available teams and players from your Redux store or API
-    const availableGames = useSelector((state) => state.stats.availableGames);
+    
+    const availableGames = stats.game
+  .map((game) => game.id) // Extract all IDs
+  .filter((id, index, ids) => ids.indexOf(id) === index);
     console.log(availableGames)
+    
     
     const availablePlayers = useSelector((state) => {
       const players = [];

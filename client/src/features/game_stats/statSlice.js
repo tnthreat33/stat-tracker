@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
-
+    // return a Promise containing the data we want
     return fetch("/game_stats")
       .then((response) => response.json())
       .then((data) => data);
@@ -44,19 +44,20 @@ const statSlice = createSlice({
       state.entities.splice(index, 1);
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchStats.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchStats.fulfilled, (state, action) => {
-        state.entities = action.payload.game_stats;
-        state.availableGames = action.payload.available_games; // Save available games
-        state.status = "idle";
-      });
+  extraReducers: {
+    // handle async actions: pending, fulfilled, rejected (for errors)
+    [fetchStats.pending](state) {
+      state.status = "loading";
+    },
+    [fetchStats.fulfilled](state, action) {
+      state.entities = action.payload;
+      state.status = "idle";
+    },
   },
 });
 
 export const { statAdded, statRemoved } = statSlice.actions;
 
 export default statSlice.reducer;
+
+
