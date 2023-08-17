@@ -5,9 +5,7 @@ import Dropdown from "./dropdown";
 
 function StatInput({stats}) {
     const [selectedGame, setSelectedGame] = useState("");
-    
     const [selectedPlayer, setSelectedPlayer] = useState("");
-    
     const [era, setERA] = useState("");
     const [k, setK] = useState("");
     const [rbi, setRBI] = useState("");
@@ -28,8 +26,8 @@ function StatInput({stats}) {
 
     // Create an object with the collected data
     const newStat = {
-        game_id: selectedGame.id,
-        player_id: selectedPlayer.id,
+      game_id: selectedGame.id,
+      player_id: selectedPlayer.id,
       
       ERA: era,
       K: k,
@@ -76,12 +74,10 @@ function StatInput({stats}) {
   
     // Fetch available teams and players from your Redux store or API
     
-    const availableGames = stats.game
-  .map((game) => game.id) // Extract all IDs
-  .filter((id, index, ids) => ids.indexOf(id) === index);
-    console.log(availableGames)
     
+    const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
     
+
     const availablePlayers = useSelector((state) => {
       const players = [];
       state.teams.entities.forEach((team) => {
@@ -157,14 +153,15 @@ function StatInput({stats}) {
         <input type="number" value={stolenBase} onChange={handleStolenBasesChange} />
 
         <label>Game:</label>
-        <select onSelect={handleGameSelect}>
-      <option value="">Select an option</option>
-      {availableGames.map((option) => (
-        <option key={option.id} value={option.id}>
-          {option.away_team} vs. {option.home_team}
-        </option>
-      ))}
-    </select>
+        <select onChange={(event) => handleGameSelect(event.target.value)}>
+          <option value="">Select an option</option>
+          {availableGames.map((option) => (
+            <option key={option.id} value={option.game_id}>
+              {option.game.away_team_name} vs. {option.game.home_team_name}
+            </option>
+          ))}
+        </select>
+
         
         <label>Player:</label>
         <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
