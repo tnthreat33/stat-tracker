@@ -32,12 +32,11 @@ const statSlice = createSlice({
   name: "stats",
   initialState: {
     entities: [], // Existing game_stat data
-    availableGames: [], // Initialize available games
     status: "idle",
   },
   reducers: {
     statAdded(state, action) {
-      state.entities.push({ id: uuid(), name: action.payload });
+      state.entities.push(action.payload);
     },
     statRemoved(state, action) {
       const index = state.entities.findIndex((r) => r.id === action.payload);

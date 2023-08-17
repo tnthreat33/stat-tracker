@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { statAdded } from "./statSlice";
+import { addGameStat} from "./statSlice";
 import Dropdown from "./dropdown";
 
 function StatInput({stats}) {
@@ -26,9 +26,9 @@ function StatInput({stats}) {
 
     // Create an object with the collected data
     const newStat = {
-      game_id: selectedGame.id,
-      player_id: selectedPlayer.id,
-      
+      game_id: selectedGame,
+      player_id: selectedPlayer,
+      played: 1,
       ERA: era,
       K: k,
       RBI: rbi,
@@ -43,7 +43,7 @@ function StatInput({stats}) {
     };
 
     // Dispatch the action to send the new game stat data to the backend
-    dispatch(statAdded(newStat));
+    dispatch(addGameStat(newStat));
 
     
     setERA("");
@@ -76,7 +76,7 @@ function StatInput({stats}) {
     
     
     const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
-    
+    console.log(availableGames)
 
     const availablePlayers = useSelector((state) => {
       const players = [];
