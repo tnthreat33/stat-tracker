@@ -27,7 +27,24 @@ class GameStatsController < ApplicationController
         #   render json: { error: "Stat not found" }, status: :not_found
         # end 
       end
-
+      def update
+        stat = GameStat.find_by(id: params[:id])
+        stat.update(stat_params)
+        render json: stat, status: :accepted
+        # if @reservation
+        #   if @reservation.user_id == @current_user.id
+        #     if @reservation.update(reservation_params)
+        #       render json: @reservation, status: :accepted
+        #     else
+        #       render json: { error: @reservation.errors.full_messages }, status: :unprocessable_entity
+        #     end
+        #   else
+        #     render json: { error: "Unauthorized: Cannot update reservation" }, status: :unauthorized
+        #   end
+        # else
+        #   render json: { error: "Reservation not found" }, status: :not_found
+        # end
+      end
 
     private
 
