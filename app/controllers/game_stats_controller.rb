@@ -28,7 +28,6 @@ class GameStatsController < ApplicationController
         # end 
       end
       def update
-        byebug
         stat = GameStat.find_by(id: params[:id])
         stat.update(stat_params)
         render json: stat, status: :accepted

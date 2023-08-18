@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { updateGameStat, fetchStats } from "./statSlice";
 
 
@@ -8,6 +8,7 @@ import { updateGameStat, fetchStats } from "./statSlice";
 function StatUpdateForm() {
   const { statId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const stats = useSelector((state) => state.stats.entities);
   const statToUpdate = stats.find((stat) => stat.id === parseInt(statId));
 
@@ -43,7 +44,7 @@ function StatUpdateForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateGameStat({ id: statId, updatedStat: { ...updatedStat, game_id: parseInt(updatedStat.game_id) } }));
-    // Redirect or handle success as needed
+    navigate("/stats");
   };
 
   const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
