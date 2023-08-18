@@ -70,25 +70,25 @@ function StatUpdateForm() {
           onChange={handleInputChange}
         />
         <label>K:</label>
-        <input type="number" value={statToUpdate.K} onChange={handleInputChange} />
+        <input type="number" name="K" value={updatedStat.K} onChange={handleInputChange} />
         <label>RBI:</label>
-        <input type="number" value={statToUpdate.RBI} onChange={handleInputChange} />
+        <input type="number" name="RBI" value={updatedStat.RBI} onChange={handleInputChange} />
         <label>AB:</label>
-        <input type="number" value={statToUpdate.at_bat} onChange={handleInputChange} />
+        <input type="number" name="at_bat" value={updatedStat.at_bat} onChange={handleInputChange} />
         <label>BA:</label>
-        <input type="number" step="0.01" value={statToUpdate.batting_average} onChange={handleInputChange}/>
+        <input type="number" step="0.01" name="batting_average" value={updatedStat.batting_average} onChange={handleInputChange}/>
         <label>Errors:</label>
-        <input type="number" value={statToUpdate.fielding_error} onChange={handleInputChange}/>
+        <input type="number" name="fielding_error" value={updatedStat.fielding_error} onChange={handleInputChange}/>
         <label>Fielding %:</label>
-        <input type="number" value={statToUpdate.fielding_percentage} onChange={handleInputChange} />
+        <input type="number" name="fielding_percentage" value={updatedStat.fielding_percentage} onChange={handleInputChange} />
         <label>Hits:</label>
-        <input type="number" value={statToUpdate.hits} onChange={handleInputChange} />
+        <input type="number" name="hits" value={updatedStat.hits} onChange={handleInputChange} />
         <label>IP:</label>
-        <input type="number" value={statToUpdate.innings_pitched} onChange={handleInputChange} />
+        <input type="number" name="innings_pitched" value={updatedStat.innings_pitched} onChange={handleInputChange} />
         <label>Runs:</label>
-        <input type="number" value={statToUpdate.runs} onChange={handleInputChange} />
+        <input type="number" name="runs" value={updatedStat.runs} onChange={handleInputChange} />
         <label>Stolen Bases:</label>
-        <input type="number" value={statToUpdate.stolen_base} onChange={handleInputChange}/>
+        <input type="number" name="stolen_base" value={updatedStat.stolen_base} onChange={handleInputChange}/>
 
         <label>Game:</label>
         <select name="game_id" value={updatedStat.game_id} onChange={handleInputChange}>
