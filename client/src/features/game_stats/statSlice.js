@@ -52,6 +52,9 @@ const statSlice = createSlice({
       state.entities = action.payload;
       state.status = "idle";
     },
+    [addGameStat.fulfilled](state, action) {
+      state.entities.push(action.payload); // Update the state with the newly added stat
+    },
   },
 });
 

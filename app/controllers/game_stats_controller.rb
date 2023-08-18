@@ -6,7 +6,6 @@ class GameStatsController < ApplicationController
     end 
 
     def create 
-        byebug
         stat = GameStat.create(stat_params)
         if stat.valid?
         render json: stat, status: :created

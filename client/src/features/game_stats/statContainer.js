@@ -15,7 +15,7 @@ function StatContainer() {
     useEffect(() => {
       dispatch(fetchStats());
     }, [dispatch]);
-  
+    
     return (
       <div>
         <p>All stats</p>
