@@ -1,9 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteGameStat } from "./statSlice";
 
 function Stat({ stats }) {
+  const dispatch = useDispatch();
+  
   if (!stats) {
     return <div>Loading...</div>;
   }
+
+  
+
+  const handleDeleteStat = (statId) => {
+    dispatch(deleteGameStat(statId));
+  };
 
   // Group the stats by player
   const groupedStats = {};
@@ -61,6 +71,9 @@ function Stat({ stats }) {
                     <td>{stat.innings_pitched}</td>
                     <td>{stat.runs}</td>
                     <td>{stat.stolen_base}</td>
+                    <td>
+                      <button onClick={() => handleDeleteStat(stat.id)}>Delete</button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

@@ -27,6 +27,21 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
       throw error;
     }
   });
+  export const deleteGameStat = createAsyncThunk("stats/deleteGameStat", async (statId) => {
+    try {
+      const response = await fetch(`/game_stats/${statId}`, {
+        method: "DELETE",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to delete game stat");
+      }
+  
+      return statId; // Return the ID of the deleted stat
+    } catch (error) {
+      throw error;
+    }
+  });
 
 const statSlice = createSlice({
   name: "stats",
@@ -55,6 +70,12 @@ const statSlice = createSlice({
     [addGameStat.fulfilled](state, action) {
       state.entities.push(action.payload); // Update the state with the newly added stat
     },
+    [deleteGameStat.fulfilled](state, action) {
+      const statId = action.payload;
+      const index = state.entities.findIndex((stat) => stat.id === statId);
+      if (index !== -1) {
+        state.entities.splice(index, 1);
+      }}
   },
 });
 

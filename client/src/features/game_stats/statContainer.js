@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStats } from "./statSlice";
-import Stats from "./stats";
+import Stat from "./stat";
 import StatInput from "./statsInput";
 
 
@@ -24,7 +24,7 @@ function StatContainer() {
         </button>
         {isInputVisible && <StatInput stats={stats}/>} {/* Render StatInput if isInputVisible is true */}
      
-        <Stats stats={stats} />
+        <Stat stats={stats} />
         </div>
     );
   }
