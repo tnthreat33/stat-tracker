@@ -48,7 +48,7 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
     async ({ id, updatedStat }) => {
       try {
         const response = await fetch(`/game_stats/${id}`, {
-          method: "PUT", // Assuming you use PUT for updating
+          method: "PATCH", 
           headers: {
             "Content-Type": "application/json",
           },

@@ -76,7 +76,7 @@ function StatInput({stats}) {
     
     
     const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
-    console.log(availableGames)
+    
 
     const availablePlayers = useSelector((state) => {
       const players = [];

@@ -39,10 +39,10 @@ function StatUpdateForm() {
       [name]: value,
     }));
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateGameStat({ id: statId, updatedStat }));
+    dispatch(updateGameStat({ id: statId, updatedStat: { ...updatedStat, game_id: parseInt(updatedStat.game_id) } }));
     // Redirect or handle success as needed
   };
 
@@ -94,7 +94,7 @@ function StatUpdateForm() {
         <select name="game_id" value={updatedStat.game_id} onChange={handleInputChange}>
           <option value="">Select an option</option>
           {availableGames.map((option) => (
-            <option key={option.id} value={option.id}>
+            <option key={option.id} value={option.game_id}>
               {option.game.away_team_name} vs. {option.game.home_team_name}
             </option>
           ))}
