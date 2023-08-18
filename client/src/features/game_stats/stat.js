@@ -1,10 +1,12 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteGameStat } from "./statSlice";
 
 function Stat({ stats }) {
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
+
   if (!stats) {
     return <div>Loading...</div>;
   }
@@ -73,6 +75,13 @@ function Stat({ stats }) {
                     <td>{stat.stolen_base}</td>
                     <td>
                       <button onClick={() => handleDeleteStat(stat.id)}>Delete</button>
+                      <button
+                        onClick={() => {
+                          navigate(`/stats/update/${stat.id}`)
+                       }}
+                      >
+                        Update
+                      </button>
                     </td>
                   </tr>
                 ))}

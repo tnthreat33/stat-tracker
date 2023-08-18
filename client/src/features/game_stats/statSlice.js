@@ -43,6 +43,30 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
     }
   });
 
+  export const updateGameStat = createAsyncThunk(
+    "stats/updateGameStat",
+    async ({ id, updatedStat }) => {
+      try {
+        const response = await fetch(`/game_stats/${id}`, {
+          method: "PUT", // Assuming you use PUT for updating
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedStat),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Failed to update game stat");
+        }
+  
+        const data = await response.json();
+        return data; // You might want to return the updated stat data
+      } catch (error) {
+        throw error;
+      }
+    }
+  );
+
 const statSlice = createSlice({
   name: "stats",
   initialState: {
@@ -75,9 +99,17 @@ const statSlice = createSlice({
       const index = state.entities.findIndex((stat) => stat.id === statId);
       if (index !== -1) {
         state.entities.splice(index, 1);
-      }}
+      }},
+  
+  [updateGameStat.fulfilled](state, action) {
+    const updatedStat = action.payload;
+    const index = state.entities.findIndex((stat) => stat.id === updatedStat.id);
+    if (index !== -1) {
+      state.entities[index] = updatedStat; // Update the state with the updated stat
+    }
   },
-});
+  }})
+
 
 export const { statAdded, statRemoved } = statSlice.actions;
 

@@ -2,6 +2,7 @@ import React from "react";
 import TeamsContainer from "./features/teams/teamContainer";
 import TeamDetails from "./features/teams/teamDetails";
 import StatContainer from "./features/game_stats/statContainer";
+import StatUpdateForm from "./features/game_stats/statUpdateForm";
 import Dashboard from "./dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
@@ -16,6 +17,7 @@ function App() {
         <Route path="/stats" element={<StatContainer />}/>
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
+        <Route path="/stats/update/:statId" element={<StatUpdateForm/>} />
         <Route path="/" element={<Dashboard/>}/>
         </Routes>
       
