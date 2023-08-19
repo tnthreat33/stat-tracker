@@ -17,13 +17,15 @@ function StatInput({stats}) {
     const [inningsPitched, setInningsPitched] = useState("");
     const [runs, setRuns] = useState("");
     const [stolenBase, setStolenBase] = useState("");
+    const [backendErrors, setBackendErrors] = useState([]);
+
 
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Create an object with the collected data
     const newStat = {
       game_id: selectedGame,
@@ -33,34 +35,44 @@ function StatInput({stats}) {
       K: k,
       RBI: rbi,
       fielding_percentage: fieldingPercentage,
-      batting_average:ba,
+      batting_average: ba,
       at_bat: atBat,
-      fielding_error: errors,
+      field_error: errors,
       hits: hits,
       innings_pitched: inningsPitched,
       runs: runs,
-      stolen_base: stolenBase
+      stolen_base: stolenBase,
     };
-
-    // Dispatch the action to send the new game stat data to the backend
-    dispatch(addGameStat(newStat));
-
-    
-    setERA("");
-    setK("");
-    setRBI("");
-    setAtBat("");
-    setBA("");
-    setErrors("");
-    setFieldingPercentage("");
-    setHits("");
-    setInningsPitched("");
-    setRuns("");
-    setStolenBase("");
-    setSelectedGame("");
-    setSelectedPlayer("");
-
+  
+    try {
+      // Dispatch the action to send the new game stat data to the backend
+      await dispatch(addGameStat(newStat));
+  
+      // Clear the backendErrors state if the request succeeds
+      setBackendErrors([]);
+  
+      // Clear input fields
+      setERA("");
+      setK("");
+      setRBI("");
+      setAtBat("");
+      setBA("");
+      setErrors("");
+      setFieldingPercentage("");
+      setHits("");
+      setInningsPitched("");
+      setRuns("");
+      setStolenBase("");
+      setSelectedGame("");
+      setSelectedPlayer("");
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        // Set the backendErrors state with the error messages
+        setBackendErrors(error.response.data.error);
+      }
+    }
   };
+  
   
     const handleGameSelect = (gameId) => {
       setSelectedGame(gameId);
@@ -167,8 +179,18 @@ function StatInput({stats}) {
         <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
         <button type="submit">Add Stat</button>
         </form>
+    
+    {backendErrors.length > 0 && (
+      <div className="backend-error">
+        <p>Failed to add game stat due to the following errors:</p>
+        <ul>
+          {backendErrors.map((errorMessage, index) => (
+            <li key={index}>{errorMessage}</li>
+          ))}
+        </ul>
       </div>
+    )}
+  </div>
     );
-  }
-  
+          }
   export default StatInput;
