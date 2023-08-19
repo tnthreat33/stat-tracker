@@ -11,6 +11,7 @@ function StatUpdateForm() {
   const navigate = useNavigate();
   const stats = useSelector((state) => state.stats.entities);
   const statToUpdate = stats.find((stat) => stat.id === parseInt(statId));
+  const [backendErrors, setBackendErrors] = useState([]);
 
   useEffect(() => {
     dispatch(fetchStats());
@@ -43,8 +44,19 @@ function StatUpdateForm() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateGameStat({ id: statId, updatedStat: { ...updatedStat, game_id: parseInt(updatedStat.game_id) } }));
-    navigate("/stats");
+    
+    // Clear backendErrors when submitting
+    setBackendErrors([]);
+
+    dispatch(updateGameStat({ id: statId, updatedStat: { ...updatedStat, game_id: parseInt(updatedStat.game_id) } }))
+      .then(() => {
+        navigate("/stats");
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 422) {
+          setBackendErrors(error.response.data.error);
+        }
+      });
   };
 
   const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
@@ -112,6 +124,16 @@ function StatUpdateForm() {
         </select>
         <button type="submit">Update</button>
       </form>
+      {backendErrors.length > 0 && (
+        <div className="backend-error">
+          <p>Failed to update game stat due to the following errors:</p>
+          <ul>
+            {backendErrors.map((errorMessage, index) => (
+              <li key={index}>{errorMessage}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
