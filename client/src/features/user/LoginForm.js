@@ -1,27 +1,37 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUser, setToken } from "./authSlice"; // Import the action creators
+import { login} from "./authSlice"; // Import the action creators
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const[last_name, setLastName] = useState("")
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform login API request here and get user data and token
 
+    try {
+      const credentials = {
+        username,
+        password,
+      };
 
-    // Dispatch actions to update Redux store
-    dispatch(setUser(user));
-    dispatch(setToken(token));
+      // Dispatch the login action and await its completion
+      const response = await dispatch(login(credentials));
 
-    // Clear form fields
-    setUsername("");
-    setPassword("");
+      // Handle successful login if needed (e.g., redirect)
+     navigate("/")
+
+      // Clear form fields
+      setUsername("");
+      setPassword("");
+    } catch (error) {
+      // Handle login error
+      console.error("Login error:", error);
+    }
   };
 
   return (
@@ -44,30 +54,7 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           </div>
-            <div>
-          <label>Email:</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            value={first_name}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          </div>
-          <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            value={last_name}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
+        
         <button type="submit">Login</button>
       </form>
     </div>
