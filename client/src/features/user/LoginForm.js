@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login} from "./authSlice"; // Import the action creators
+import SignupForm from "./SignupForm";
+
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
+ 
 
 
   const handleSubmit = async (e) => {
@@ -34,6 +38,14 @@ const LoginForm = () => {
     }
   };
 
+  function handleShowSignUpForm() {
+    setShowSignUpForm(true);
+  }
+
+  if (showSignUpForm) {
+    return <SignupForm  />;
+  }
+
   return (
     <div>
       <h2>Login</h2>
@@ -57,6 +69,8 @@ const LoginForm = () => {
         
         <button type="submit">Login</button>
       </form>
+      <button onClick={handleShowSignUpForm}>Sign Up</button>
+
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, signup } from "./authSlice";
+import LoginForm from "./LoginForm";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState("");
   const[last_name, setLastName] = useState("")
+  const [showLoginForm, setLoginForm] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,13 @@ const SignupForm = () => {
     }
   };
 
+  function handleShowLoginForm() {
+    setLoginForm(true);
+  }
+
+  if (showLoginForm) {
+    return <LoginForm />;
+  }
 
   return (
     <div>
@@ -80,6 +89,7 @@ const SignupForm = () => {
         </div>
         <button type="submit">Signup</button>
       </form>
+      <button onClick={handleShowLoginForm}>Login</button>
     </div>
   );
 };

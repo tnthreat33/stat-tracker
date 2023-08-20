@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
     skip_before_action :authorized, only: :create
 
-
     def create 
+      byebug
         user = User.create(user_params)
         if user.valid?
           session[:user_id] = user.id
-          render json: user
+          render json: users
         else
           render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     private
 
     def user_params 
-        params.permit(:name, :email, :address, :password)
+        params.permit(:first_name, :email, :address, :password, :last_name, :username)
       end
       
 

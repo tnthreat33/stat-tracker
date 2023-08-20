@@ -1,10 +1,12 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { autoLogin } from "./authSlice";
+import { autoLogin } from "./features/user/authSlice";
 import TeamsContainer from "./features/teams/teamContainer";
 import TeamDetails from "./features/teams/teamDetails";
 import StatContainer from "./features/game_stats/statContainer";
 import StatUpdateForm from "./features/game_stats/statUpdateForm";
+import LoginForm from "./features/user/LoginForm";
+import SignupForm from "./features/user/SignupForm";
 import Dashboard from "./dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';

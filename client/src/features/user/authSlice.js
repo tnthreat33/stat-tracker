@@ -35,7 +35,7 @@ export const login = createAsyncThunk('auth/login', async (credentials) => {
   
   export const signup = createAsyncThunk('auth/signup', async (newUser) => {
     // Perform signup API request here and return user data and token
-    const response = await fetch('/signup', {
+    const response = await fetch('/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
