@@ -15,7 +15,7 @@ function App() {
 
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.user);
-  console.log(currentUser)
+  
 
   useEffect(() => {
     // Dispatch the auto-login action on component mount

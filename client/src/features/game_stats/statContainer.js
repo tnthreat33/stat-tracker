@@ -12,6 +12,7 @@ function StatContainer() {
     const status = useSelector((state) => state.stats.status);
     const [isInputVisible, setInputVisible] = useState(false); // State to manage form visibility
     
+
     useEffect(() => {
       dispatch(fetchStats());
     }, [dispatch]);

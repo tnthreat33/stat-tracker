@@ -15,6 +15,7 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
     }
   });
   
+  
 export const login = createAsyncThunk('auth/login', async (credentials) => {
     // Perform login API request here and return user data and token
     const response = await fetch('/login', {
@@ -61,11 +62,10 @@ const authSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
-      state.isAuthenticated = true;
+      state.user.push(action.payload)
     },
     setToken: (state, action) => {
-      state.token = action.payload;
+      state.token.push( action.payload);
     },
     logout: (state) => {
       state.user = null;
@@ -73,6 +73,16 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
     },
   },
+  extraReducers: {
+    // handle async actions: pending, fulfilled, rejected (for errors)
+    [autoLogin.pending](state) {
+      state.isAuthenticated = "loading";
+    },
+    [autoLogin.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isAuthenticated = "true";
+    },
+  }
 });
 
 export const { setUser, setToken, logout } = authSlice.actions;
