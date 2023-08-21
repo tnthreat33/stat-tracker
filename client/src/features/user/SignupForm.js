@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, signup } from "./authSlice";
 import LoginForm from "./LoginForm";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate ();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState("");
-  const[last_name, setLastName] = useState("")
+  const[last_name, setLastName] = useState("");
+  const [address, setAddress] = useState("");
   const [showLoginForm, setLoginForm] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -21,15 +24,16 @@ const SignupForm = () => {
         password,
         email, 
         first_name,
-        last_name
+        last_name,
+        address
       };
 
       const response = await dispatch(signup(newUser));
-      // Handle successful response if needed
+      navigate("/")
 
       // Clear form fields
-      setUsername("");
-      setPassword("");
+      // setUsername("");
+      // setPassword("");
     } catch (error) {
       // Handle signup error
     }
@@ -85,6 +89,14 @@ const SignupForm = () => {
             type="text"
             value={last_name}
             onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Address:</label>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </div>
         <button type="submit">Signup</button>

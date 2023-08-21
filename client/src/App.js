@@ -6,7 +6,6 @@ import TeamDetails from "./features/teams/teamDetails";
 import StatContainer from "./features/game_stats/statContainer";
 import StatUpdateForm from "./features/game_stats/statUpdateForm";
 import LoginForm from "./features/user/LoginForm";
-import SignupForm from "./features/user/SignupForm";
 import Dashboard from "./dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
@@ -16,6 +15,7 @@ function App() {
 
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.user);
+  console.log(currentUser)
 
   useEffect(() => {
     // Dispatch the auto-login action on component mount
@@ -29,6 +29,7 @@ function App() {
         console.error("Auto-login error:", error);
       });
   }, [dispatch]);
+  
 
   if (!currentUser) return <LoginForm  />;
 

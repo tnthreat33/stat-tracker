@@ -30,6 +30,7 @@ export const login = createAsyncThunk('auth/login', async (credentials) => {
     }
   
     const data = await response.json();
+    console.log(data)
     return data;
   });
   
