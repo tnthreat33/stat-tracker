@@ -1,14 +1,21 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './NavBar.css';
+import { useDispatch } from "react-redux";
+import { logout } from './features/user/authSlice';
 
 
 function NavBar() {
+  const dispatch = useDispatch();
+
+  function handleLogout() {
+    dispatch(logout()); // Use the correct action creator
+  }
 
   return (
     <div className="navbar">
       <header>
-        Welcome<button >Logout</button> </header>
+        Welcome <button onClick={handleLogout}>Logout</button> </header>
         
       <nav>
       <h4>Stat Tracker</h4>

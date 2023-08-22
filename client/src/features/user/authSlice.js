@@ -14,6 +14,24 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
       throw error;
     }
   });
+
+  export const logout = createAsyncThunk('auth/logout', async () => {
+    try {
+      const response = await fetch("/logout", {
+        method: "DELETE",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Logout request failed");
+      }
+      
+      return; // No need to return anything here
+  
+    } catch (error) {
+      console.log("Logout error:", error);
+      throw error; // Rethrow the error to be caught by the caller
+    }
+  });
   
   
 export const login = createAsyncThunk('auth/login', async (credentials) => {
@@ -67,7 +85,7 @@ const authSlice = createSlice({
     setToken: (state, action) => {
       state.token.push( action.payload);
     },
-    logout: (state) => {
+    setLogout: (state) => {
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
@@ -82,8 +100,16 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = "true";
     },
+    [logout.pending](state) {
+      state.isAuthenticated = "loading";
+    },
+    [logout.fulfilled](state) {
+      state.user = null;
+      state.token = null;
+      state.isAuthenticated = false;
+    },
   }
 });
 
-export const { setUser, setToken, logout } = authSlice.actions;
+export const { setUser, setToken, setLogout } = authSlice.actions;
 export default authSlice.reducer;
