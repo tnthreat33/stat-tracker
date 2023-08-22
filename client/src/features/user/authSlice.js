@@ -115,6 +115,13 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = "true";
     },
+    [signup.pending](state) {
+      state.isAuthenticated = "loading";
+    },
+    [signup.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isAuthenticated = "true";
+    },
   }
 });
 
