@@ -34,24 +34,29 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
   });
   
   
-export const login = createAsyncThunk('auth/login', async (credentials) => {
-    // Perform login API request here and return user data and token
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    });
+  export const login = createAsyncThunk('auth/login', async (credentials) => {
+    try {
+      // Perform login API request here and return user data and token
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
   
-    if (!response.ok) {
-      throw new Error('Login failed');
+      if (!response.ok) {
+        throw new Error("Login Failed");
+      }
+      
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      throw error;
+      
     }
-  
-    const data = await response.json();
-    console.log(data)
-    return data;
   });
+  
   
   export const signup = createAsyncThunk('auth/signup', async (newUser) => {
     // Perform signup API request here and return user data and token
@@ -77,6 +82,7 @@ const authSlice = createSlice({
     user: null,
     token: null,
     isAuthenticated: false,
+    error: null,
   },
   reducers: {
     setUser: (state, action) => {
@@ -89,6 +95,9 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
   extraReducers: {
@@ -115,6 +124,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = "true";
     },
+  
     [signup.pending](state) {
       state.isAuthenticated = "loading";
     },
@@ -125,5 +135,5 @@ const authSlice = createSlice({
   }
 });
 
-export const { setUser, setToken, setLogout } = authSlice.actions;
+export const { setUser, setToken, setLogout} = authSlice.actions;
 export default authSlice.reducer;
