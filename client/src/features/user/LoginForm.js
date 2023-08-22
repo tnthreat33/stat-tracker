@@ -24,7 +24,7 @@ const LoginForm = () => {
       };
 
       // Dispatch the login action and await its completion
-      const response = await dispatch(login(credentials));
+      dispatch(login(credentials));
 
       // Handle successful login if needed (e.g., redirect)
      navigate("/")

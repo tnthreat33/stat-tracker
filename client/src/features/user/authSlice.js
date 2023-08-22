@@ -108,6 +108,13 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
     },
+    [login.pending](state) {
+      state.isAuthenticated = "loading";
+    },
+    [login.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isAuthenticated = "true";
+    },
   }
 });
 
