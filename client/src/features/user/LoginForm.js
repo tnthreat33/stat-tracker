@@ -39,7 +39,7 @@ const LoginForm = () => {
       setPassword("");
     } catch (error) {
       console.log(error)
-      if (error.response && error.response.status === 401) {
+      if (error.response ) {
         // Set the backendErrors state with the error messages
         setError(error.response.data.error);
       }

@@ -14,6 +14,7 @@ const SignupForm = () => {
   const[last_name, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [showLoginForm, setLoginForm] = useState(false);
+  const [error, setError] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,14 +31,17 @@ const SignupForm = () => {
 
       const response = await dispatch(signup(newUser));
       navigate("/")
-
+      setError([]);
       // Clear form fields
       // setUsername("");
       // setPassword("");
     } catch (error) {
-      // Handle signup error
+      console.log(error)
+      if (error.response) {
+        // Set the backendErrors state with the error messages
+        setError(error.response.data.error);
     }
-  };
+  }};
 
   function handleShowLoginForm() {
     setLoginForm(true);
@@ -102,8 +106,19 @@ const SignupForm = () => {
         <button type="submit">Signup</button>
       </form>
       <button onClick={handleShowLoginForm}>Login</button>
+      {error.length > 0 && (
+        <div >
+          <p>Failed Login:</p>
+          <ul>
+            {error.map((errorMessage, index) => (
+              <li key={index}>{errorMessage}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
+
 
 export default SignupForm;
