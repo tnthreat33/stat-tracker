@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login} from "./authSlice"; // Import the action creators
 import SignupForm from "./SignupForm";
 
@@ -11,8 +11,8 @@ const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [error, setError] = useState([]);
-  console.log(error)
+  const error = useSelector(state => state.auth.error) || [];
+  console.log(error.login)
 
 
   const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ const LoginForm = () => {
       // Dispatch the login action and await its completion
       dispatch(login(credentials));
 
-      setError([]);
+      
 
       // Handle successful login if needed (e.g., redirect)
      navigate("/")
@@ -39,10 +39,7 @@ const LoginForm = () => {
       setPassword("");
     } catch (error) {
       console.log(error)
-      if (error.response ) {
-        // Set the backendErrors state with the error messages
-        setError(error.response.data.error);
-      }
+      
     }
   };
 
@@ -78,16 +75,16 @@ const LoginForm = () => {
         <button type="submit">Login</button>
       </form>
       <button onClick={handleShowSignUpForm}>Sign Up</button>
-      {error.length > 0 && (
-        <div >
-          <p>Failed Login:</p>
-          <ul>
-            {error.map((errorMessage, index) => (
-              <li key={index}>{errorMessage}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {error && (
+      <div>
+        
+        <ul>
+        {error && error.errors && error.errors.login && (
+      <li>{error.errors.login}</li>
+    )}
+        </ul>
+      </div>
+    )}
 
     </div>
   );
