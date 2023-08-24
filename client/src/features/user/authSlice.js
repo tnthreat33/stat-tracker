@@ -58,23 +58,28 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
   
   
   
-  export const signup = createAsyncThunk('auth/signup', async (newUser) => {
-    // Perform signup API request here and return user data and token
-    const response = await fetch('/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newUser),
-    });
+  export const signup = createAsyncThunk('auth/signup', async (newUser, { rejectWithValue }) => {
+    try {
+      const response = await fetch('/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUser),
+      });
   
-    if (!response.ok) {
-      throw new Error('Signup failed');
+      if (!response.ok) {
+        const errorData = await response.json();
+        return rejectWithValue(errorData); // Reject with the error payload
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message); // Reject with the error message
     }
-  
-    const data = await response.json();
-    return data;
   });
+  
 
 const authSlice = createSlice({
   name: 'auth',
@@ -137,6 +142,10 @@ const authSlice = createSlice({
     [signup.fulfilled](state, action) {
       state.user = action.payload;
       state.isAuthenticated = "true";
+    },
+    [signup.rejected](state, action){
+      state.isAuthenticated = false;
+      state.error = action.payload;
     },
   }
 });

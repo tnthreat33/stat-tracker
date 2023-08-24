@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "./authSlice";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,8 @@ const SignupForm = () => {
   const[last_name, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [showLoginForm, setLoginForm] = useState(false);
-  const [error, setError] = useState([]);
+  const error = useSelector(state => state.auth.error) || [];
+  console.log(error)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,16 +32,13 @@ const SignupForm = () => {
 
       const response = await dispatch(signup(newUser));
       navigate("/")
-      setError([]);
+      
       // Clear form fields
       // setUsername("");
       // setPassword("");
     } catch (error) {
       console.log(error)
-      if (error.response) {
-        // Set the backendErrors state with the error messages
-        setError(error.response.data.error);
-    }
+      
   }};
 
   function handleShowLoginForm() {
@@ -106,16 +104,16 @@ const SignupForm = () => {
         <button type="submit">Signup</button>
       </form>
       <button onClick={handleShowLoginForm}>Login</button>
-      {error.length > 0 && (
-        <div >
-          <p>Failed Login:</p>
-          <ul>
-            {error.map((errorMessage, index) => (
-              <li key={index}>{errorMessage}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {error && error.errors && error.errors.length > 0 && (
+      <div>
+        
+        <ul>
+          {error.errors.map((errorMessage, index) => (
+            <li key={index}>{errorMessage}</li>
+          ))}
+        </ul>
+      </div>
+    )}
     </div>
   );
 };

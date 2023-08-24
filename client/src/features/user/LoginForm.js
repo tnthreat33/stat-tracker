@@ -12,7 +12,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [showSignUpForm, setShowSignUpForm] = useState(false);
   const error = useSelector(state => state.auth.error) || [];
-  console.log(error.login)
+  
 
 
   const handleSubmit = async (e) => {
