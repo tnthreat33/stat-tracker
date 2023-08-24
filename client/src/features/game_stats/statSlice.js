@@ -49,7 +49,7 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
 
   export const updateGameStat = createAsyncThunk(
     "stats/updateGameStat",
-    async ({ id, updatedStat }) => {
+    async ({ id, updatedStat ,rejectWithValue }) => {
       try {
         const response = await fetch(`/game_stats/${id}`, {
           method: "PATCH", 
@@ -60,13 +60,14 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
         });
   
         if (!response.ok) {
-          throw new Error("Failed to update game stat");
+          const errorData = await response.json();
+          return rejectWithValue(errorData); // Reject with the error payload
         }
   
         const data = await response.json();
-        return data; // You might want to return the updated stat data
+        return data;
       } catch (error) {
-        throw error;
+        return rejectWithValue(error.message); // Reject with the error message
       }
     }
   );
@@ -117,6 +118,11 @@ const statSlice = createSlice({
     if (index !== -1) {
       state.entities[index] = updatedStat; // Update the state with the updated stat
     }
+    state.error = null;
+  },
+  [updateGameStat.rejected](state, action){
+    state.status= "idle";
+    state.error = action.payload;
   },
   }})
 
