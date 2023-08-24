@@ -7,26 +7,30 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
       .then((response) => response.json())
       .then((data) => data);
   });
-  export const addGameStat = createAsyncThunk("stats/addGameStat", async (newStat) => {
-    try {
-      const response = await fetch("/game_stats", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newStat),
-      });
+  export const addGameStat = createAsyncThunk(
+    'stats/addGameStat',
+    async (newStat, { rejectWithValue }) => {
+      try {
+        const response = await fetch('/game_stats', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newStat),
+        });
   
-      if (!response.ok) {
-        throw new Error("Failed to add game stat");
+        if (!response.ok) {
+          const errorData = await response.json();
+          return rejectWithValue(errorData); // Reject with the error payload
+        }
+  
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message); // Reject with the error message
       }
-  
-      const data = await response.json();
-      return data; // You might want to return the newly added stat data
-    } catch (error) {
-      throw error;
     }
-  });
+  );
   export const deleteGameStat = createAsyncThunk("stats/deleteGameStat", async (statId) => {
     try {
       const response = await fetch(`/game_stats/${statId}`, {
@@ -72,6 +76,7 @@ const statSlice = createSlice({
   initialState: {
     entities: [], // Existing game_stat data
     status: "idle",
+    error: null,
   },
   reducers: {
     statAdded(state, action) {
@@ -93,6 +98,11 @@ const statSlice = createSlice({
     },
     [addGameStat.fulfilled](state, action) {
       state.entities.push(action.payload); // Update the state with the newly added stat
+      state.error = null;
+    },
+    [addGameStat.rejected](state, action){
+      state.status= "idle";
+      state.error = action.payload;
     },
     [deleteGameStat.fulfilled](state, action) {
       const statId = action.payload;

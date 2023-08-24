@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteGameStat } from "./statSlice";
 
-function Stat({ stats }) {
+function Stat({ stats}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,6 +31,7 @@ function Stat({ stats }) {
 
   return (
     <div>
+       
       <ul>
         {Object.keys(groupedStats).map((playerId) => (
           <li key={playerId}>

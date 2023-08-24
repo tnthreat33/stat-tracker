@@ -17,7 +17,9 @@ function StatInput({stats}) {
     const [inningsPitched, setInningsPitched] = useState("");
     const [runs, setRuns] = useState("");
     const [stolenBase, setStolenBase] = useState("");
-    const [backendErrors, setBackendErrors] = useState([]);
+    const error = useSelector(state => state.stats.error) || [];
+   
+    
 
 
 
@@ -48,8 +50,7 @@ function StatInput({stats}) {
       // Dispatch the action to send the new game stat data to the backend
       await dispatch(addGameStat(newStat));
   
-      // Clear the backendErrors state if the request succeeds
-      setBackendErrors([]);
+     
   
       // Clear input fields
       setERA("");
@@ -68,7 +69,7 @@ function StatInput({stats}) {
     } catch (error) {
       if (error.response && error.response.status === 422) {
         // Set the backendErrors state with the error messages
-        setBackendErrors(error.response.data.error);
+        console.log(error)
       }
     }
   };
@@ -138,6 +139,7 @@ function StatInput({stats}) {
   
     return (
       <div>
+      
         <form onSubmit={handleSubmit}>
         <h2>Add New Stat</h2>
         
@@ -179,17 +181,18 @@ function StatInput({stats}) {
         <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
         <button type="submit">Add Stat</button>
         </form>
+        {error.error && error.error.length > 0 && (
+        <div>
+          <p>Errors:</p>
+          <ul>
+            {error.error.map((errorMessage, index) => (
+              <li key={index}>{errorMessage}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     
-    {backendErrors.length > 0 && (
-      <div className="backend-error">
-        <p>Failed to add game stat due to the following errors:</p>
-        <ul>
-          {backendErrors.map((errorMessage, index) => (
-            <li key={index}>{errorMessage}</li>
-          ))}
-        </ul>
-      </div>
-    )}
+        
   </div>
     );
           }
