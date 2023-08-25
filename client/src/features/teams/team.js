@@ -5,7 +5,7 @@ function Team({ team }) {
   if (!team) {
     return <div>Loading...</div>;
   }
-
+console.log(team)
   return (
     <div>
       <li>
