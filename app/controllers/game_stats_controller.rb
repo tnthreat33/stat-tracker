@@ -15,17 +15,21 @@ class GameStatsController < ApplicationController
     end 
     
     def destroy 
-        if stat = GameStat.find_by(id: params[:id])
-         if stat.game.away_team_id || stat.game.home_team_id == @current_user.team.id
-            stat.destroy 
+        @game_stat = GameStat.find_by(id: params[:id])
+        
+        if @game_stat
+          team = @game_stat.player.team
+          if team && team.user == @current_user
+            @game_stat.destroy
             head :no_content
-          else 
-            render json: { error: "Unauthorized: Cannot delete reservation" }, status: :unauthorized
-          end 
+          else
+            render json: { error: "Unauthorized: Cannot delete stat" }, status: :unauthorized
+          end
         else 
           render json: { error: "Stat not found" }, status: :not_found
         end 
       end
+      
       def update
         if stat = GameStat.find_by(id: params[:id])
              if stat.game.away_team_id || stat.game.home_team_id == @current_user.team.id
