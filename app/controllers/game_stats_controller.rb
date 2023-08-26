@@ -31,10 +31,13 @@ class GameStatsController < ApplicationController
       end
       
       def update
-        if stat = GameStat.find_by(id: params[:id])
-             if stat.game.away_team_id || stat.game.home_team_id == @current_user.team.id
-                if stat.update(stat_params)
-                    render json: stat, status: :accepted
+        @game_stat = GameStat.find_by(id: params[:id])
+        
+        if @game_stat
+          team = @game_stat.player.team
+          if team && team.user == @current_user
+                if @game_stat.update(stat_params)
+                    render json: @game_stat, status: :accepted
                 else
                     render json: { error: stat.errors.full_messages }, status: :unprocessable_entity
                 end
@@ -42,7 +45,7 @@ class GameStatsController < ApplicationController
             render json: { error: "Unauthorized: Cannot update reservation" }, status: :unauthorized
           end
         else
-          render json: { error: "Reservation not found" }, status: :not_found
+          render json: { error: "Stat not found" }, status: :not_found
         end
       end
 

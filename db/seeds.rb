@@ -36,7 +36,40 @@
 #       K: row['K']
 #     )
 #   end
+
+GameStat.create!(
+      game_id: 4,
+      player_id: 78,
+      played: 1,
+      batting_average: 0,
+      at_bat: 0,
+      hits: 0,
+      runs: 0,
+      RBI: 0,
+      stolen_base: 0,
+      field_error: 0,  
+      fielding_percentage: 0,
+      innings_pitched: 0,
+      ERA: 0,
+      K: 0
+    )
   
+# Player.create!(
+#     team_id: 5,
+#         name: "test name",
+#         position: "pitcher",
+#         graduation_year: 2025,
+#         dominate_hand: "right",
+#         jersey_number: 00
+
+# )
+# Game.create!(
+#       home_team_id: 5,
+#       away_team_id: 2,
+#       date: Date.new(2023, 3, 28),
+#       city: "Test",
+#       state: "Test",
+#     )
 
 # # Create a specific user
 # User.create!(

@@ -12,6 +12,7 @@ function StatUpdateForm() {
   const stats = useSelector((state) => state.stats.entities);
   const statToUpdate = stats.find((stat) => stat.id === parseInt(statId));
   const error = useSelector(state => state.stats.error) || [];
+  console.log(error)
 
   useEffect(() => {
     dispatch(fetchStats());
@@ -44,15 +45,14 @@ function StatUpdateForm() {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    // Clear backendErrors when submitting
-    
-
+  
     dispatch(updateGameStat({ id: statId, updatedStat: { ...updatedStat, game_id: parseInt(updatedStat.game_id) } }))
-      .then(() => {
-        navigate("/stats");
-      })
-      ;
+      .then((response) => {
+        // Check if the response indicates success
+        if (response.payload) {
+          navigate("/stats");
+        }
+      });
   };
 
   const availableGames = [...new Map(stats.map(stat => [stat.game_id, stat])).values()];
