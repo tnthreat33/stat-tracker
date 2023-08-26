@@ -8,16 +8,40 @@ export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {
       .then((data) => data);
   });
 
-
+  export const addTeam = createAsyncThunk(
+    'team/addTeam',
+    async (newTeam, { rejectWithValue }) => {
+      try {
+        const response = await fetch('/teams', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newTeam),
+        });
+  
+        if (!response.ok) {
+          const errorData = await response.json();
+          return rejectWithValue(errorData); // Reject with the error payload
+        }
+  
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message); // Reject with the error message
+      }
+    }
+  );
 const teamsSlice = createSlice({
   name: "teams",
   initialState: {
     entities: [],
     status: "idle",
+    error: null,
   },
   reducers: {
     teamAdded(state, action) {
-      state.entities.push({ id: uuid(), name: action.payload });
+      state.entities.push(action.payload);
     },
     teamRemoved(state, action) {
       const index = state.entities.findIndex((r) => r.id === action.payload);
@@ -32,6 +56,13 @@ const teamsSlice = createSlice({
     [fetchTeams.fulfilled](state, action) {
       state.entities = action.payload;
       state.status = "idle";
+    }, [addTeam.fulfilled](state, action) {
+      state.entities.push(action.payload); // Update the state with the newly added stat
+      state.error = null;
+    },
+    [addTeam.rejected](state, action){
+      state.status= "idle";
+      state.error = action.payload;
     },
   },
 });
