@@ -14,6 +14,14 @@ class TeamsController < ApplicationController
     end
   end
 
+  def show 
+    user = @current_user # Assuming you have a current_user method
+    # Find the team associated with the user
+    team = user.teams
+    
+    render json: team
+  end 
+
   private
   def team_params
     params.permit(:name, :nickname, :address, :wins, :loses)

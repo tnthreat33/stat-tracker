@@ -10,6 +10,7 @@ import Dashboard from "./dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import "./App.css"
+import YourTeam from "./features/teams/yourTeam";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       
       <NavBar user={currentUser}/>
       <Routes>
+        <Route path="/:user" element={<YourTeam/>}/>
         <Route path="/stats" element={<StatContainer />}/>
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />

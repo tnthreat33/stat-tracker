@@ -19,7 +19,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
         }
   
         const data = await response.json();
+        
         return data;
+        
       } catch (error) {
         return rejectWithValue(error.message); // Reject with the error message
       }

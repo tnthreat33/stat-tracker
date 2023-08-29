@@ -7,6 +7,22 @@ export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {
       .then((response) => response.json())
       .then((data) => data);
   });
+  export const fetchUserTeam = createAsyncThunk(
+    'teams/fetchUserTeam',
+    async (userId, { rejectWithValue }) => {
+      try {
+        const response = await fetch(`/teams/${userId}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          return rejectWithValue(errorData);
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  );
 
   export const addTeam = createAsyncThunk(
     'team/addTeam',
@@ -38,6 +54,7 @@ const teamsSlice = createSlice({
     entities: [],
     status: "idle",
     error: null,
+    userTeam: null,
   },
   reducers: {
     teamAdded(state, action) {
@@ -47,6 +64,7 @@ const teamsSlice = createSlice({
       const index = state.entities.findIndex((r) => r.id === action.payload);
       state.entities.splice(index, 1);
     },
+    
   },
   extraReducers: {
     // handle async actions: pending, fulfilled, rejected (for errors)
@@ -64,9 +82,21 @@ const teamsSlice = createSlice({
       state.status= "idle";
       state.error = action.payload;
     },
+    [fetchUserTeam.pending](state) {
+      state.status = "loading";
+    },
+    [fetchUserTeam.fulfilled](state, action) {
+      state.userTeam = action.payload; // Update the user's team data
+      state.status = "idle";
+      state.error = null;
+    },
+    [fetchUserTeam.rejected](state, action) {
+      state.status = "idle";
+      state.error = action.payload;
+    },
   },
 });
 
-export const { teamAdded, teamRemoved } = teamsSlice.actions;
+export const { teamAdded, teamRemoved} = teamsSlice.actions;
 
 export default teamsSlice.reducer;

@@ -21,6 +21,9 @@ function NavBar({user}) {
       <h4>Stat Tracker</h4>
         <ul>
         <li>
+            <NavLink to="/:user"> Your Team</NavLink>
+          </li>
+        <li>
             <NavLink to="/stats">All Stats</NavLink>
           </li>
           <li>
@@ -29,15 +32,7 @@ function NavBar({user}) {
           <li>
             <NavLink to="/"> Dashboard</NavLink>
           </li>
-          {/* <li>
-            <NavLink to="/courts">Courts</NavLink>
-          </li>
-          <li>
-            <NavLink to="/reservations">Reservations</NavLink>
-          </li>
-          <li>
-            <NavLink to="/profile">Profile</NavLink>
-          </li> */}
+         
         </ul>
       </nav>
     </div>
