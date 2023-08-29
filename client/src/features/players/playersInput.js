@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPlayer } from "./playersSlice";
 
-function PlayerInput() {
+function PlayerInput({team}) {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [graduation_year, setGradYear] = useState("");
@@ -12,6 +12,7 @@ function PlayerInput() {
   const dispatch = useDispatch();
   const error = useSelector(state => state.players.error) || [];
   const navigate = useNavigate();
+  const id = team.id
   
   function handleNameChange(event) {
     setName(event.target.value);
@@ -39,7 +40,7 @@ function PlayerInput() {
       graduation_year,
       dominate_hand,
       jersey_number,
-      team_id : {team.id}
+      team_id: id
     };
 
     try {
@@ -47,10 +48,9 @@ function PlayerInput() {
       const response = await dispatch(addPlayer(newPlayer)); // Await the dispatch
 
       // Check if the response indicates success
-      if (response.payload && response.payload.teamName) {
-        // Replace ':teamName' with the actual team name from the response
-        const teamName = response.payload.teamName;
-        navigate(`/teams/${teamName}`);
+      if (response.payload) {
+        
+        navigate(`/teams/${team.name}`);
       }
 
       // Clear input fields

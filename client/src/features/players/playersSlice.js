@@ -46,6 +46,7 @@ const playersSlice = createSlice({
     [addPlayer.fulfilled](state, action) {
       state.entities.push(action.payload); // Update the state with the newly added stat
       state.error = null;
+       
     },
     [addPlayer.rejected](state, action){
       state.status= "idle";

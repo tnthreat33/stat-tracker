@@ -1,7 +1,6 @@
 class PlayersController < ApplicationController
 
     def create
-        byebug
         player = Player.new(player_params)
 
     if player.save
@@ -12,6 +11,6 @@ class PlayersController < ApplicationController
   end
   private
   def player_params
-    params.permit(:name, :graduation_year, :dominate_hand, :jersey_number, :position)
+    params.permit(:name, :graduation_year, :dominate_hand, :jersey_number, :position, :team_id)
   end
 end

@@ -1,12 +1,14 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, {useState} from "react";
+import { useParams} from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import PlayerInput from "../players/playersInput";
 
 function TeamDetails() {
   const { teamName } = useParams();
   const teams = useSelector((state) => state.teams.entities);
   const team = teams.find((t) => t.name === teamName);
+  const [isInputVisible, setInputVisible] = useState(false);
 
   if (!team) {
     return <div>Team not found.</div>;
@@ -25,9 +27,12 @@ function TeamDetails() {
         <li> {team.wins} - {team.loses} </li>
         </ul>
         <p>
-        <Link to={{ pathname: `/players`}}>
-          Add New Players
-        </Link>
+        <button onClick={() => setInputVisible(!isInputVisible)}>
+          Add New Player
+        </button>
+        
+        {isInputVisible && <PlayerInput team={team} />} {/* Render StatInput if isInputVisible is true */}
+     
         </p>
         <table>
         <thead>
