@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addPlayer } from "./playersSlice";
 
 function PlayerInput() {
@@ -10,6 +11,7 @@ function PlayerInput() {
   const [jersey_number, setJerseyNumber] = useState("");
   const dispatch = useDispatch();
   const error = useSelector(state => state.players.error) || [];
+  const navigate = useNavigate();
   
   function handleNameChange(event) {
     setName(event.target.value);
@@ -29,22 +31,28 @@ function PlayerInput() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Create an object with the collected data
     const newPlayer = {
       name,
       position,
       graduation_year,
       dominate_hand,
-      jersey_number
+      jersey_number,
+      team_id : {team.id}
     };
-  
+
     try {
-      // Dispatch the action to send the new game stat data to the backend
-      await dispatch(addPlayer(newPlayer));
-  
-     
-  
+      // Dispatch the action to send the new player data to the backend
+      const response = await dispatch(addPlayer(newPlayer)); // Await the dispatch
+
+      // Check if the response indicates success
+      if (response.payload && response.payload.teamName) {
+        // Replace ':teamName' with the actual team name from the response
+        const teamName = response.payload.teamName;
+        navigate(`/teams/${teamName}`);
+      }
+
       // Clear input fields
       setName("");
       setPosition("");
@@ -54,8 +62,7 @@ function PlayerInput() {
       
     } catch (error) {
       if (error.response && error.response.status === 422) {
-        
-        console.log(error)
+        console.log(error);
       }
     }
   };
@@ -93,7 +100,7 @@ function PlayerInput() {
       <label>
         Dominate Hand
         <input
-          type="number"
+          type="text"
           name="name"
           value={dominate_hand}
           onChange={handleDominateHandChange}

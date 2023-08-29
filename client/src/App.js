@@ -10,6 +10,7 @@ import Dashboard from "./dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import "./App.css"
+import PlayerInput from "./features/players/playersInput";
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
         <Route path="/stats/update/:statId" element={<StatUpdateForm/>} />
+        <Route path="/players" element={<PlayerInput/>} />
         <Route path="/" element={<Dashboard/>}/>
         </Routes>
       

@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
 
     def create
+        byebug
         player = Player.new(player_params)
-        player.team_id = @current_user.team_id
 
     if player.save
       render json: player, status: :created

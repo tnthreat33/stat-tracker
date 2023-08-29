@@ -24,6 +24,11 @@ function TeamDetails() {
         <li> {team.address}</li>
         <li> {team.wins} - {team.loses} </li>
         </ul>
+        <p>
+        <Link to={{ pathname: `/players`}}>
+          Add New Players
+        </Link>
+        </p>
         <table>
         <thead>
           <tr>
