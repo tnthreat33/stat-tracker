@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App">
       
-      <NavBar />
+      <NavBar user={currentUser}/>
       <Routes>
         <Route path="/stats" element={<StatContainer />}/>
         <Route path="/teams" element={<TeamsContainer />} />

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { logout } from './features/user/authSlice';
 
 
-function NavBar() {
+function NavBar({user}) {
   const dispatch = useDispatch();
 
   function handleLogout() {
@@ -15,7 +15,7 @@ function NavBar() {
   return (
     <div className="navbar">
       <header>
-        Welcome <button onClick={handleLogout}>Logout</button> </header>
+        Welcome, {user.first_name} <button onClick={handleLogout}>Logout</button> </header>
         
       <nav>
       <h4>Stat Tracker</h4>
