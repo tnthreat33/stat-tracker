@@ -23,6 +23,9 @@ function NavBar({user}) {
         <li>
             <NavLink to="/:user"> Your Team</NavLink>
           </li>
+          <li>
+            <NavLink to="/schedule"> Your Schedule</NavLink>
+          </li>
         <li>
             <NavLink to="/stats">All Stats</NavLink>
           </li>

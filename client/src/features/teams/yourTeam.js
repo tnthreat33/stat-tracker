@@ -6,7 +6,7 @@ function YourTeam() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
-
+console.log(userTeams)
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);

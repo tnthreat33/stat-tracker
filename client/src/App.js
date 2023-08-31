@@ -11,6 +11,7 @@ import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import "./App.css"
 import YourTeam from "./features/teams/yourTeam";
+import Schedule from "./features/games/schedule";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
       <NavBar user={currentUser}/>
       <Routes>
         <Route path="/:user" element={<YourTeam/>}/>
+        <Route path="/schedule" element={<Schedule/>}/>
         <Route path="/stats" element={<StatContainer />}/>
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
