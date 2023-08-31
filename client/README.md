@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Softball Stat Tracker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a web application that allows users to keep track of their teams' stats and the stats of their competition. The frontend of the application is built using React, while the backend is developed with Ruby on Rails. The application utilizes a RESTful API to handle user authentication, schedule management, and game stat functionality.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User authentication**: Users can create accounts, log in, and log out of the application.
+- **Schedule management**: Users can view a list of their games.
+- **Game Stat management**: Users can view their season stats, individual game stats, create new game stats, delete game stats, and update existing game stats.
+- **All Teams**: Users can view all the teams on their schedule and the stats from their games.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Frontend**: React with Redux
+- **Backend**: Ruby on Rails
+- **Database**: PostgreSQL
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Backend Models
 
-### `npm test`
+The backend consists of the following models:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **User**: Represents a user of the application. Users can have many teams.
+- **Game**: Represents a game. Games can have many game stats and many players.
+- **Player**: Represents a player. Players can have many game stats and many games.
+- **Team**: Represents a team. Teams can have many games and many players.
+- **Game Stat**: Represents a single stat made by a player for a specific game. Game stats belong to both players and games.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To run the application locally, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository: `git clone stat-tracker`
+2. Navigate to the project directory: `cd stat-tracker`
+3. Install dependencies: `npm install`
+4. Start the Rails server: `rails s`
+5. Navigate to the client: `cd client`
+6. Start the client: `npm start`
+7. Access the application in your browser at http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Frontend Structure
 
-### `npm run eject`
+Here's an overview of the frontend components used:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **App**: The core component responsible for structuring the entire application and managing routing. It interacts with the backend API, handling data related to game statistics, teams, players, and user authentication.
+- **NavBar**: Renders the navigation bar, providing links to different pages within the application and offering access to the user's profile information.
+- **Home**: Displays the main landing page, presenting a list of available game statistics and teams. Users can navigate from here to different sections of the app.
+- ...
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The frontend interacts with the backend API through various endpoints. Here are some of the important API endpoints used by the application:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **POST /login**: Initiates a login session by creating a new session.
+- **GET /auth**: Retrieves the current user's information for authentication.
+- **DELETE /logout**: Ends the current user's session, effectively logging them out.
+- **GET /teams/:id**: Retrieves detailed information about a specific team identified by `:id`.
+- ...
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to modify and adapt this content according to your project's specific details and needs.
