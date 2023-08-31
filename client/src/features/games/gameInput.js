@@ -17,12 +17,13 @@ function GameInput({team}) {
   
   
   
-  function handleHomeTeamChange(event) {
-    setHomeTeam(event.target.value);
-  }
-  function handleAwayTeamChange(event) {
-    setAwayTeam(event.target.value);
-  }
+  const handleHomeTeamSelect = (gameId) => {
+    setHomeTeam(gameId);
+  };
+  const handleAwayTeamsSelect = (gameId) => {
+    setAwayTeam(gameId);
+  };
+  
   function handleDateChange(event) {
     setDate(event.target.value);
   }
@@ -73,24 +74,24 @@ function GameInput({team}) {
   return (
     <div>
     <form onSubmit={handleSubmit}>
-      <label>
-        Home Team
-        <input
-          type="text"
-          name="name"
-          value={home_team}
-          onChange={handleHomeTeamChange}
-        />
-      </label>
-      <label>
-        Away Team
-        <input
-          type="text"
-          name="name"
-          value={away_team}
-          onChange={handleAwayTeamChange}
-        />
-      </label>
+      <label>Home Team:</label>
+        <select onChange={(event) => handleHomeTeamSelect(event.target.value)}>
+          <option value="">Select an option</option>
+          {teams.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name} 
+            </option>
+          ))}
+          </select>
+      <label>Away Team:</label>
+        <select onChange={(event) => handleAwayTeamsSelect(event.target.value)}>
+          <option value="">Select an option</option>
+          {teams.map((option) => (
+            <option key={option.id} value={option.id}>
+              {option.name} 
+            </option>
+          ))}
+          </select>
       <label>
         Date
         <input
