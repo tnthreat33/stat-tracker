@@ -59,11 +59,12 @@ function YourTeam() {
                     </button>
                   </td>
                 </tr>
+                
               ))}
             </tbody>
           </table>
           {selectedPlayer !== null  && (
-            <PlayerGameStats playerStats={playerStats} />
+            <PlayerGameStats playerStats={playerStats} team={userId.teams}/>
           )}
         </div>
       ))}
