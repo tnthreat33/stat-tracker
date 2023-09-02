@@ -8,7 +8,10 @@ function YourTeam() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
-
+  const playerStats = useSelector((state)=> state.stats.playerGameStats)
+  
+ 
+ 
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);
@@ -59,9 +62,8 @@ function YourTeam() {
               ))}
             </tbody>
           </table>
-          {/* Render the PlayerGameStats component when selectedPlayer is not null */}
           {selectedPlayer !== null  && (
-            <PlayerGameStats playerStats={userTeam.playerGameStats} />
+            <PlayerGameStats playerStats={playerStats} />
           )}
         </div>
       ))}

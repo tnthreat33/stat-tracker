@@ -2,6 +2,8 @@
 import React from 'react';
 
 function PlayerGameStats({ playerStats }) {
+    
+
   return (
     <div>
       <h3>Player Game Stats</h3>

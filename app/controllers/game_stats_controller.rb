@@ -50,13 +50,16 @@ class GameStatsController < ApplicationController
       end
 
       def player_stat
-        @game_stat = GameStat.find_by(id: params[:id])
-        if @game_stat
-          render json: @game_stat, status: :accepted
+        @player = Player.find_by(id: params[:id])
+      
+        if @player
+          @game_stats = @player.game_stats
+          render json: @game_stats, status: :accepted
         else 
-          render json: { error: "Stat not found" }, status: :not_found
+          render json: { error: "Player not found" }, status: :not_found
         end
       end
+      
 
     private
 

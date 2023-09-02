@@ -42,7 +42,8 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
         }
   
         const data = await response.json();
-        return data; // Return the fetched game stats for the player
+        
+        return data; 
       } catch (error) {
         return rejectWithValue(error.message); // Reject with the error message
       }
@@ -95,6 +96,7 @@ const statSlice = createSlice({
     entities: [], // Existing game_stat data
     status: "idle",
     error: null,
+    playerGameStats: [],
   },
   reducers: {
     statAdded(state, action) {
