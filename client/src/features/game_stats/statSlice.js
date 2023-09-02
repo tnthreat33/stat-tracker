@@ -31,6 +31,23 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
       }
     }
   );
+  export const fetchPlayerGameStats = createAsyncThunk(
+    "stats/fetchPlayerGameStats",
+    async (playerId, { rejectWithValue }) => {
+      try {
+        const response = await fetch(`/game_stats/player/${playerId}`);
+        if (!response.ok) {
+          const errorData = await response.json();
+          return rejectWithValue(errorData); // Reject with the error payload
+        }
+  
+        const data = await response.json();
+        return data; // Return the fetched game stats for the player
+      } catch (error) {
+        return rejectWithValue(error.message); // Reject with the error message
+      }
+    }
+  );
   export const deleteGameStat = createAsyncThunk("stats/deleteGameStat", async (statId) => {
     try {
       const response = await fetch(`/game_stats/${statId}`, {
@@ -122,6 +139,14 @@ const statSlice = createSlice({
   },
   [updateGameStat.rejected](state, action){
     state.status= "idle";
+    state.error = action.payload;
+  },
+  [fetchPlayerGameStats.fulfilled](state, action) {
+    state.playerGameStats = action.payload; // Store the fetched game stats in state
+    state.error = null;
+  },
+  [fetchPlayerGameStats.rejected](state, action) {
+    state.status = "idle";
     state.error = action.payload;
   },
   }})

@@ -7,7 +7,7 @@ function Stat({ stats}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- 
+ console.log(stats)
 
   if (!stats) {
     return <div>Loading...</div>;

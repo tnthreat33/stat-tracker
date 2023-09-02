@@ -119,7 +119,7 @@ function GameInput({team}) {
           onChange={handleStateChange}
         />
       </label>
-      <button type="submit">Add Player</button>
+      <button type="submit">Add Game</button>
     </form>
     {error.error && error.error.length > 0 && (
       <div>

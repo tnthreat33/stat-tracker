@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchUserTeam } from "./teamsSlice"; 
+import { fetchPlayerGameStats } from "../game_stats/statSlice";
+import PlayerGameStats from "../players/playerGameStat";
 
 function YourTeam() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
-console.log(userTeams)
+
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);
+
+  const [selectedPlayer, setSelectedPlayer] = useState(null); // Add a state to track the selected player
+
+  const handlePlayerClick = (playerId) => {
+    // When a player is clicked, fetch their game stats
+    dispatch(fetchPlayerGameStats(playerId));
+    setSelectedPlayer(playerId); // Set the selected player's ID
+  };
 
   if (!userTeams || userTeams.length === 0) {
     return <p>Loading...</p>;
@@ -31,6 +41,7 @@ console.log(userTeams)
                 <th>Jersey Number</th>
                 <th>Name</th>
                 <th>Position</th>
+                <th> Show Stats</th>
               </tr>
             </thead>
             <tbody>
@@ -39,10 +50,19 @@ console.log(userTeams)
                   <td>{player.jersey_number}</td>
                   <td>{player.name}</td>
                   <td>{player.position}</td>
+                  <td>
+                    <button onClick={() => handlePlayerClick(player.id)}>
+                      Show Stats
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {/* Render the PlayerGameStats component when selectedPlayer is not null */}
+          {selectedPlayer !== null  && (
+            <PlayerGameStats playerStats={userTeam.playerGameStats} />
+          )}
         </div>
       ))}
     </div>
