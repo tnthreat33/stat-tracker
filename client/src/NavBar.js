@@ -26,9 +26,7 @@ function NavBar({user}) {
           <li>
             <NavLink to="/schedule"> Your Schedule</NavLink>
           </li>
-          <li>
-            <NavLink to="/lineup"> Your Lineup</NavLink>
-          </li>
+         
         <li>
             <NavLink to="/stats">All Stats</NavLink>
           </li>

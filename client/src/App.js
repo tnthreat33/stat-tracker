@@ -12,7 +12,7 @@ import NavBar from './NavBar';
 import "./App.css"
 import YourTeam from "./features/teams/yourTeam";
 import Schedule from "./features/games/schedule";
-import HittingLineup from "./features/lineup/hittingLineup";
+
 
 
 function App() {
@@ -45,7 +45,6 @@ function App() {
       <Routes>
         <Route path="/team" element={<YourTeam/>}/>
         <Route path="/schedule" element={<Schedule/>}/>
-        <Route path="/lineup" element={<HittingLineup/>}/>
         <Route path="/stats" element={<StatContainer />}/>
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
