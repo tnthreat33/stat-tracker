@@ -6,7 +6,7 @@ import TeamDetails from "./features/teams/teamDetails";
 import StatContainer from "./features/game_stats/statContainer";
 import StatUpdateForm from "./features/game_stats/statUpdateForm";
 import LoginForm from "./features/user/LoginForm";
-import Dashboard from "./dashboard";
+import Dashboard from "./features/dashboard/dashboard";
 import { Routes, Route} from 'react-router-dom';
 import NavBar from './NavBar';
 import "./App.css"

@@ -19,18 +19,18 @@ function Schedule() {
   
     return (
         <div>
-            <p>
+            <div>
              <button onClick={() => setInputVisible(!isInputVisible)}>
           Add New Game
         </button>
         
         {isInputVisible && <GameInput team={userTeams} />} {/* Render StatInput if isInputVisible is true */}
      
-        </p>
+        </div>
           {userTeams.map((userTeam) => (
             <div key={userTeam.id}>
               <h1>{userTeam.name} - {userTeam.nickname}</h1>
-              <p>Wins: {userTeam.wins} - Losses: {userTeam.losses}</p>
+              <p>Wins: {userTeam.wins} - Losses: {userTeam.loses}</p>
               
       
               <h3>Home Games</h3>
