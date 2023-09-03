@@ -5,7 +5,7 @@ function PlayerGameStats({ playerStats, team }) {
     
   return (
     <div>
-      <h3>{playerStats[0].player.name} Game Stats</h3>
+      <h3> Game Stats</h3>
       <table>
         <thead>
           <tr>
