@@ -21,10 +21,13 @@ function NavBar({user}) {
       <h4>Stat Tracker</h4>
         <ul>
         <li>
-            <NavLink to="/:user"> Your Team</NavLink>
+            <NavLink to="/team"> Your Team</NavLink>
           </li>
           <li>
             <NavLink to="/schedule"> Your Schedule</NavLink>
+          </li>
+          <li>
+            <NavLink to="/lineup"> Your Lineup</NavLink>
           </li>
         <li>
             <NavLink to="/stats">All Stats</NavLink>

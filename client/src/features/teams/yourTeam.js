@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 import { fetchUserTeam } from "./teamsSlice"; 
 import { fetchPlayerGameStats } from "../game_stats/statSlice";
 import PlayerGameStats from "../players/playerGameStat";
@@ -9,6 +10,7 @@ function YourTeam() {
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
   const playerStats = useSelector((state)=> state.stats.playerGameStats)
+  const navigate = useNavigate()
  
  
   useEffect(() => {
@@ -22,6 +24,14 @@ function YourTeam() {
     dispatch(fetchPlayerGameStats(playerId));
     setSelectedPlayer(playerId); // Set the selected player's ID
   };
+
+  const handleAddToLineup = (player) => {
+    // Navigate to the "/lineup" route and pass the selected player's information as props
+    navigate("/lineup",{
+      state:{ player},
+    });
+  };
+ 
 
   if (!userTeams || userTeams.length === 0) {
     return <p>Loading...</p>;
@@ -76,6 +86,11 @@ function YourTeam() {
                     
                     <button onClick={() => handlePlayerClick(player.id)}>
                       Show Stats
+                    </button>
+                  </td>
+                  <td>
+                    <button onClick={() => handleAddToLineup(player)}>
+                      Add to Lineup
                     </button>
                   </td>
                 </tr>
