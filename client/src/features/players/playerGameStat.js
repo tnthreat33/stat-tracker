@@ -3,10 +3,9 @@ import React from 'react';
 
 function PlayerGameStats({ playerStats, team }) {
     
-
   return (
     <div>
-      <h3>Player Game Stats</h3>
+      <h3>{playerStats[0].player.name} Game Stats</h3>
       <table>
         <thead>
           <tr>

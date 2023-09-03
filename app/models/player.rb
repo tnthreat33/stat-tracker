@@ -15,61 +15,61 @@ class Player < ApplicationRecord
 
   def calculate_batting_average
     
-    total_batting_average = game_stats.sum(:batting_average)
-    total_games_played = game_stats.sum(:played)
+    total_batting_average = self.game_stats.sum(:batting_average)
+    total_games_played = self.game_stats.sum(:played)
     total_batting_average / total_games_played
   end
 
   def calculate_era
     
-    total_era = game_stats.sum(:ERA)
-    total_games_played = game_stats.sum(:played)
+    total_era = self.game_stats.sum(:ERA)
+    total_games_played = self.game_stats.sum(:played)
     total_era / total_games_played
   end
 
   def calculate_hits
     
-    total_hits = game_stats.sum(:hits)
+    total_hits = self.game_stats.sum(:hits)
     
   end
   def calculate_k
     
-    total_k = game_stats.sum(:K)
+    total_k = self.game_stats.sum(:K)
     
   end
 
   def calculate_rbi
    
-    total_rbi = game_stats.sum(:RBI)
+    total_rbi = self.game_stats.sum(:RBI)
     
   end
 
   def calculate_at_bats
     
-    total_at_bat= game_stats.sum(:at_bat)
+    total_at_bat= self.game_stats.sum(:at_bat)
     
   end
 
   def calculate_errors
   
-    total_era = game_stats.sum(:field_error)
+    total_era = self.game_stats.sum(:field_error)
     
   end
 
   def calculate_innings_pitched
    
-    total_hits = game_stats.sum(:innings_pitched)
+    total_hits = self.game_stats.sum(:innings_pitched)
     
   end
   def calculate_stolen_bases
     
-    total_k = game_stats.sum(:stolen_base)
+    total_k = self.game_stats.sum(:stolen_base)
     
   end
 
   def calculate_runs
     
-    total_rbi = game_stats.sum(:RBI)
+    total_rbi = self.game_stats.sum(:RBI)
     
   end
 
