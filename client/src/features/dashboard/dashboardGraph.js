@@ -1,102 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Line } from "react-chartjs-2";
-import Select from "react-select"; // For dropdowns
-import { useSelector, useDispatch } from "react-redux";
-import { fetchUserTeam } from "../teams/teamsSlice";
-import PlayerGameStats from "../players/playerGameStat";
+import Chart from 'chart.js/auto';
 
-const DashboardGraph = ({currentUser}) => {
-    const dispatch = useDispatch();
-    const userId = currentUser.id;
-    const userTeams = useSelector((state) => state.teams.userTeam) || [];
-    const playerStats = useSelector((state)=> state.stats.playerGameStats)
-  
-  useEffect(() => {
-    dispatch(fetchUserTeam(userId));
-  }, [dispatch, userId]);
-   
-  
-  // Define initial state
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
-  const [selectedStat, setSelectedStat] = useState(null);
-
-  // Define options for the dropdowns (you can fetch these from your data)
-  const playerOptions = userTeams.map((player) => ({
-    value: player.id,
-    label: player.name,
-  }));
-
-  const statOptions = [
-    { value: "batting_average", label: "Batting Average" },
-    { value: "era", label: "ERA" },
-    // Add more options for other statistics
-  ];
-
-  // Set up chart data (initially empty)
-  const [chartData, setChartData] = useState({
-    labels: [],
+const DashboardGraph = () => {
+  const months = ['January', 'February', 'March',
+  'April', 'May', 'June']
+  const rain = [65, 59, 80, 81, 56,100];
+  const state = {
+    labels: months.map(m =>m),
     datasets: [
       {
-        label: "Game Statistics",
-        data: [],
+        label: 'Rainfall',
         fill: false,
-        borderColor: "rgb(75, 192, 192)",
-      },
-    ],
-  });
-
-  // Update chart data when selectedPlayer or selectedStat changes
-  useEffect(() => {
-    if (selectedPlayer && selectedStat) {
-      // Fetch or calculate data for the selectedPlayer and selectedStat
-      // and update the chartData accordingly
-      // You should replace the example data below with your actual data fetching logic
-      const data = [
-        10, 15, 12, 20, 25, 18, 22, 16, 12, 24, 28, 15, 20, 18, 23, 27, 14,
-      ];
-
-      setChartData((prevData) => ({
-        ...prevData,
-        labels: Array.from({ length: data.length }, (_, i) => `Game ${i + 1}`),
-        datasets: [
-          {
-            ...prevData.datasets[0],
-            data: data,
-          },
-        ],
-      }));
-    }
-  }, [selectedPlayer, selectedStat]);
-
-  if (userTeams.length === 0) {
-    return <p>Loading...</p>;
+        lineTension: 0.5,
+        backgroundColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: rain.map(r => r)
+      }
+    ]
   }
-
-  return (
-    <div>
-      <h3>Game Statistics Graph</h3>
-
-      <div>
-        <label>Select Player:</label>
-        <Select
-          options={playerOptions}
-          onChange={(selectedOption) => setSelectedPlayer(selectedOption.value)}
-          isClearable={true}
-        />
-      </div>
-
-      <div>
-        <label>Select Statistic:</label>
-        <Select
-          options={statOptions}
-          onChange={(selectedOption) => setSelectedStat(selectedOption.value)}
-          isClearable={true}
-        />
-      </div>
-
-      <Line data={chartData} />
-    </div>
-  );
-};
+  
+      return (
+        <div>
+          <Line
+            data={state}
+            options={{
+              title:{
+                display:true,
+                text:'Average Rainfall per month',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'right'
+              }
+            }}
+          />
+        </div>
+      );
+    
+  }
 
 export default DashboardGraph;
