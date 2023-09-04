@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Select from "react-select"; // For dropdowns
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUserTeam } from "../teams/teamsSlice";
+import PlayerGameStats from "../players/playerGameStat";
 
-const DashboardGraph = ({ playerData }) => {
+const DashboardGraph = ({currentUser}) => {
+    const dispatch = useDispatch();
+    const userId = currentUser.id;
+    const userTeams = useSelector((state) => state.teams.userTeam) || [];
+    const playerStats = useSelector((state)=> state.stats.playerGameStats)
+  
+  useEffect(() => {
+    dispatch(fetchUserTeam(userId));
+  }, [dispatch, userId]);
+   
+  
   // Define initial state
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [selectedStat, setSelectedStat] = useState(null);
 
   // Define options for the dropdowns (you can fetch these from your data)
-  const playerOptions = playerData.map((player) => ({
+  const playerOptions = userTeams.map((player) => ({
     value: player.id,
     label: player.name,
   }));
@@ -54,6 +67,10 @@ const DashboardGraph = ({ playerData }) => {
       }));
     }
   }, [selectedPlayer, selectedStat]);
+
+  if (userTeams.length === 0) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

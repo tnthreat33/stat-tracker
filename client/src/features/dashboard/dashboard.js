@@ -1,9 +1,10 @@
 import React from "react"
+import DashboardGraph from "./dashboardGraph";
 
-function Dashboard (){
-
+function Dashboard ({currentUser}){
+console.log(currentUser)
     return(
-        <h1> This will be the user unique dashboard</h1>
+        <DashboardGraph currentUser={currentUser}/>
     )
     }
 

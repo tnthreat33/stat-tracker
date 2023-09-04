@@ -49,7 +49,7 @@ function App() {
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
         <Route path="/stats/update/:statId" element={<StatUpdateForm/>} />
-        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/" element={<Dashboard currentUser={currentUser}/>}/>
         </Routes>
       
     </div>
