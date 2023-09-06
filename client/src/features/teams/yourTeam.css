@@ -9,29 +9,41 @@
   .your-team table {
     width: 100%;
     border-collapse: collapse; /* Collapse borders to prevent spacing */
+    table-layout: fixed; /* Set table layout to fixed */
   }
   
-  /* Style the table headers with the color #bf3604 */
+  /* Style the table headers with the color #bf3604 and center-align the labels */
   .your-team th {
-    color: white;
-    text-align: left; /* Left-align header text */
-    background-color: #bf3604;
+    color: #bf3604;
+    text-align: center; /* Center-align header text */
+    padding: 8px; /* Add padding to headers for spacing */
+  }
+  
+  /* Style the "Name" column to be larger and center-align the labels */
+  .your-team th.name,
+  .your-team td.name {
+    width: 30%; /* Adjust the width as needed */
+    text-align: left; /* Left-align content in the "Name" column */
   }
   
   /* Style every other row with a light gray background */
   .your-team tbody tr:nth-child(even) {
-    background-color: #150926;
+    background-color: #f2f2f2;
   }
   
   /* Style the table cells with padding for spacing */
   .your-team td {
     padding: 8px;
-    text-align: left; /* Left-align cell text */
+    text-align: center; /* Center-align cell text for all columns except "Name" */
+    white-space: nowrap; /* Prevent cell content from wrapping */
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
   }
   
   /* Add space between table cells */
-  .your-team td:first-child {
+  .your-team td.name {
     padding-left: 0; /* Remove left padding for the first cell */
+    text-align: left; /* Left-align content in the "Name" column */
   }
   
   .your-team td:last-child {
