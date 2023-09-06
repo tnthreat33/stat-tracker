@@ -1,0 +1,40 @@
+/* yourTeam.css */
+
+/* Apply white text color to all text in the component */
+.your-team {
+    color: white;
+  }
+  
+  /* Style the table */
+  .your-team table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders to prevent spacing */
+  }
+  
+  /* Style the table headers with the color #bf3604 */
+  .your-team th {
+    color: white;
+    text-align: left; /* Left-align header text */
+    background-color: #bf3604;
+  }
+  
+  /* Style every other row with a light gray background */
+  .your-team tbody tr:nth-child(even) {
+    background-color: #150926;
+  }
+  
+  /* Style the table cells with padding for spacing */
+  .your-team td {
+    padding: 8px;
+    text-align: left; /* Left-align cell text */
+  }
+  
+  /* Add space between table cells */
+  .your-team td:first-child {
+    padding-left: 0; /* Remove left padding for the first cell */
+  }
+  
+  .your-team td:last-child {
+    padding-right: 0; /* Remove right padding for the last cell */
+  }
+  

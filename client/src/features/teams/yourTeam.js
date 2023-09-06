@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUserTeam } from "./teamsSlice"; 
 import { fetchPlayerGameStats } from "../game_stats/statSlice";
 import PlayerGameStats from "../players/playerGameStat";
+import "./yourTeam.css"
 
 function YourTeam() {
   const dispatch = useDispatch();
@@ -32,13 +33,14 @@ function YourTeam() {
   }
 
   return (
-    <div>
+    <div className="your-team">
       <h1>Your Teams</h1>
       {userTeams.map((userTeam) => (
         <div key={userTeam.id}>
           <h2>{userTeam.name} - {userTeam.nickname}</h2>
           <p>Address: {userTeam.address}</p>
           <p>Wins: {userTeam.wins} - Losses: {userTeam.losses}</p>
+          
 
           <h3>Players - Season Stats</h3>
           <table>
