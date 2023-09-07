@@ -3,41 +3,42 @@
 /* Apply white text color to all text in the component */
 .your-team {
   color: white;
+  padding-bottom: 20px;
 }
 
 /* Style the table */
 .your-team table {
-  width: auto; /* Remove fixed width to allow columns to adjust based on content */
-  border-collapse: collapse; /* Collapse borders to prevent spacing */
-  border: 2px solid white; /* Add white border around the table */
-  background-color: white; /* Set background to white */
+  width: auto;
+  border-collapse: collapse;
+  border: 2px solid white;
+  background-color: white;
   color: black;
 }
 
 /* Style the table headers with the color #bf3604 and center-align the labels */
 .your-team th {
   color: #bf3604;
-  text-align: center; /* Center-align header text */
-  padding: 8px; /* Add padding to headers for spacing */
-  border: 1px solid black; /* Add thin black border around headers */
+  text-align: center;
+  padding: 8px;
+  border: 1px solid black;
 }
 
 /* Style the "Name" column and center-align the labels */
 .your-team th.name,
 .your-team td.name {
-  text-align: center; /* Center-align content in the "Name" column */
+  text-align: center;
 }
 
 /* Style the "Position" column and center-align the labels */
 .your-team th.position,
 .your-team td.position {
-  text-align: center; /* Center-align content in the "Position" column */
+  text-align: center;
 }
 
 /* Style the "Show Game Stats" column and center-align the labels */
 .your-team th.show-stats,
 .your-team td.show-stats {
-  text-align: center; /* Center-align content in the "Show Game Stats" column */
+  text-align: center;
 }
 
 /* Style every other row with a light gray background */
@@ -48,19 +49,36 @@
 /* Style the table cells with padding for spacing */
 .your-team td {
   padding: 8px;
-  text-align: center; /* Center-align cell text for all columns */
-  white-space: nowrap; /* Prevent cell content from wrapping */
-  overflow: hidden; /* Hide overflow content */
-  text-overflow: ellipsis; /* Display ellipsis (...) for overflow */
-  border: 1px solid black; /* Add thin black border around cells */
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid black;
 }
 
 /* Add space between table cells */
 .your-team td.name {
-  padding-left: 0; /* Remove left padding for the first cell */
-  text-align: left; /* Left-align content in the "Name" column */
+  padding-left: 0;
+  text-align: left;
 }
 
 .your-team td:last-child {
-  padding-right: 0; /* Remove right padding for the last cell */
+  padding-right: 0;
+}
+
+/* Style the button with the color #bf3604, reduced size, and no border */
+.your-team button {
+  background-color: #bf3604;
+  color: white;
+  border-radius: 25px;
+  padding: 5px 10px;
+  font-size: 12px;
+  border: none;
+}
+
+/* Style the header background color */
+.your-team h3 {
+  background-color: #bf3604;
+  padding: 10px;
+  color: white;
 }

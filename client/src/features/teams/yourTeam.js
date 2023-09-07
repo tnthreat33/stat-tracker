@@ -10,7 +10,7 @@ function YourTeam() {
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
   const playerStats = useSelector((state)=> state.stats.playerGameStats)
-  console.log(userId)
+  
  
  
   useEffect(() => {
@@ -34,6 +34,7 @@ function YourTeam() {
 
   return (
     <div className="your-team">
+      <div className="team-header"/>
       <h1>{userId.name}</h1>
       {userTeams.map((userTeam) => (
         <div key={userTeam.id}>
@@ -71,15 +72,15 @@ function YourTeam() {
                   <td>{player.season.batting_average !== null ? player.season.batting_average : '-'}</td>
                   <td>{ player.season.season_ab !== null ?  player.season.season_ab  : '-'}</td>
                   <td>{ player.season.season_era !== null ?  player.season.season_era  : '-'}</td>
-                  <td>{player.season.season_fielding_error !== null ? player.season_fielding_error: '-'}</td>
-                  <td>{ player.season.season_hits_average !== null ?  player.season_hits_average : '-'}</td>
+                  <td>{player.season.season_fielding_error !== null ? player.season.season_fielding_error : '-'}</td>
+                  <td>{ player.season.season_hits_average !== null ?  player.season.season_hits_average : '-'}</td>
                   <td>{ player.season.season_ip !== null ?  player.season.season_ip  : '-'}</td>
                   <td>{player.season.season_k !== null ? player.season.season_k : '-'}</td>
                   <td>{ player.season.season_rbi !== null ?  player.season.season_rbi  : '-'}</td>
                   <td>{ player.season.season_runs !== null ?  player.season.season_runs  : '-'}</td>
-                  <td>{ player.season.season_stolen_bases !== null ?  player.season.stolen_bases : '-'}</td>
+                  <td>{ player.season.season_stolen_bases !== null ?  player.season.season_stolen_bases : '-'}</td>
                   <td>
-                    
+
                     <button onClick={() => handlePlayerClick(player.id)}>
                       Show Stats
                     </button>
