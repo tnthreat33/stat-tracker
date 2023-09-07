@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: #0c0c0d; /* Set the background color of the entire page */
-  font-family: sans-serif;
+  font-family: Helvetica;
   padding: 0; /* Remove default padding */
+  color:white;
 }
