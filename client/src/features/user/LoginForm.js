@@ -50,7 +50,7 @@ const LoginForm = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="ui input">
-          <label>Username:</label>
+          <label>Username </label>
           <input
             type="text"
             value={username}
@@ -58,7 +58,7 @@ const LoginForm = () => {
           />
         </div>
         <div className="ui input">
-          <label>Password:</label>
+          <label>Password </label>
           <input
             type="password"
             value={password}

@@ -7,10 +7,14 @@
   margin: 0 auto;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  font-family: sans-serif;
+  font-family: Helvetica;
 }
 
 .login-form-container h2 {
+  text-align: center;
+}
+
+.ui.input label {
   text-align: center;
 }
 
@@ -24,6 +28,7 @@
   border-radius: 25px; /* Add rounded corners to the input fields */
   padding: 10px; /* Adjust padding for better spacing */
   font-size: 16px; /* Increase font size for better readability */
+  align-items: center;
 }
 
 button.ui.button {
@@ -33,6 +38,7 @@ button.ui.button {
   padding: 10px 20px; /* Adjust padding for shorter buttons */
   font-size: 16px; /* Increase font size for better readability */
   margin-top: 10px;
+  align-items: center;
 }
 
 .centered-container {

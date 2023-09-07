@@ -10,7 +10,7 @@ function YourTeam() {
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
   const playerStats = useSelector((state)=> state.stats.playerGameStats)
-  
+  console.log(userId)
  
  
   useEffect(() => {
@@ -34,7 +34,7 @@ function YourTeam() {
 
   return (
     <div className="your-team">
-      <h1>Your Teams</h1>
+      <h1>{userId.name}</h1>
       {userTeams.map((userTeam) => (
         <div key={userTeam.id}>
           <h2>{userTeam.name} - {userTeam.nickname}</h2>
