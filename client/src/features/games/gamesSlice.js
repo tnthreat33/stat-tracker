@@ -1,9 +1,9 @@
-import { v4 as uuid } from "uuid";
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
   export const addGame = createAsyncThunk(
     'game/addGame',
-    async (newGame, { rejectWithValue }) => {
+    async (newGame, { dispatch, rejectWithValue }) => {
       try {
         const response = await fetch('/games', {
           method: 'POST',
@@ -19,6 +19,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
         }
   
         const data = await response.json();
+
+        dispatch(gameAdded(data));
         
         return data;
         

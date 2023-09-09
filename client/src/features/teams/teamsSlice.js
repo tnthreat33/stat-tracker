@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {

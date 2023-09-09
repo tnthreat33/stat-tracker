@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addGame } from "./gamesSlice";
+import { fetchUserTeam } from "../teams/teamsSlice";
 import "./gameInput.css"
 
-function GameInput({ team }) {
+function GameInput({ team, userId }) {
   const [home_team, setHomeTeam] = useState("");
   const [away_team, setAwayTeam] = useState("");
   const [date, setDate] = useState("");
@@ -52,6 +53,7 @@ function GameInput({ team }) {
       if (response.payload) {
         navigate(`/schedule`);
       }
+      await dispatch(fetchUserTeam(userId))
 
       // Clear input fields
       setHomeTeam("");
