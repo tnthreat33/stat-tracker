@@ -58,7 +58,7 @@ function TeamInput() {
   };
 
   return (
-    <div className="your-team">
+    <div className="your-new-team">
       <form onSubmit={handleSubmit}>
         <div className="ui.input">
           <label>
