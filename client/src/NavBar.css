@@ -45,3 +45,13 @@
 .navbar li a:hover {
   color: #000;
 }
+
+.navbar button {
+  width: 50%; /* Make buttons wider */
+  color: #150926;
+  border-radius: 25px; /* Add curved corners */
+  padding: 5px 10px; /* Adjust padding for shorter buttons */
+  font-size: 12px; /* Increase font size for better readability */
+  margin-top: 10px;
+  align-items: center;
+}

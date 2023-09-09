@@ -40,7 +40,7 @@ function YourTeam() {
         <div key={userTeam.id}>
           <h2>{userTeam.name} - {userTeam.nickname}</h2>
           <p>Address: {userTeam.address}</p>
-          <p>Wins: {userTeam.wins} - Losses: {userTeam.losses}</p>
+          <p>Wins: {userTeam.wins} - Losses: {userTeam.loses}</p>
           
 
           <h3>Players - Season Stats</h3>

@@ -1,8 +1,7 @@
 import React from 'react';
 
 function PlayerGameStats({ playerStats, team }) {
-  console.log(playerStats);
-  console.log(team);
+  
 
   return (
     <div className="your-team">
