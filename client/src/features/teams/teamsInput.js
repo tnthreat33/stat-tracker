@@ -60,7 +60,7 @@ function TeamInput() {
   return (
     <div className="your-new-team">
       <form onSubmit={handleSubmit}>
-        <div className="ui.input">
+        <div className="ui input">
           <label>
             Name
             <input
@@ -71,7 +71,7 @@ function TeamInput() {
             />
           </label>
         </div>
-        <div className="ui.input">
+        <div className="ui input">
           <label>
             Nickname
             <input
@@ -82,7 +82,7 @@ function TeamInput() {
             />
           </label>
         </div>
-        <div className="ui.input">
+        <div className="ui input">
           <label>
             Address
             <input
@@ -93,7 +93,7 @@ function TeamInput() {
             />
           </label>
         </div>
-        <div className="ui.input">
+        <div className="ui input">
           <label>
             Wins
             <input
@@ -104,7 +104,7 @@ function TeamInput() {
             />
           </label>
         </div>
-        <div className="ui.input">
+        <div className="ui input">
           <label>
             Loses
             <input
@@ -115,7 +115,7 @@ function TeamInput() {
             />
           </label>
         </div>
-        <button type="submit" className="ui.red.button">
+        <button type="submit" className="ui red button">
           Add Team
         </button>
       </form>

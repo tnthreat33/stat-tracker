@@ -15,26 +15,26 @@ function TeamDetails() {
   }
 
   return (
-    <div>
+    <div className="your-team"> {/* Apply the "your-team" class */}
       <p>
-      <Link to={{ pathname: `/teams`}}>
+        <Link to={{ pathname: `/teams` }} className="team-details-button">
           Back To Teams
         </Link>
-        </p>
+      </p>
       <h2> {team.name}  " {team.nickname} "</h2>
-      <ul>
-        <li> {team.address}</li>
-        <li> {team.wins} - {team.loses} </li>
-        </ul>
-        <p>
-        <button onClick={() => setInputVisible(!isInputVisible)}>
+        <h4> {team.address}</h4>
+        <h4> {team.wins} - {team.loses} </h4>
+      <p>
+        <button
+          className="your-team-button" // Apply the "your-team-button" class
+          onClick={() => setInputVisible(!isInputVisible)}
+        >
           Add New Player
         </button>
-        
-        {isInputVisible && <PlayerInput team={team} />} {/* Render StatInput if isInputVisible is true */}
-     
-        </p>
-        <table>
+
+        {isInputVisible && <PlayerInput team={team} />} {/* Render PlayerInput if isInputVisible is true */}
+      </p>
+      <table>
         <thead>
           <tr>
             <th>Jersey Number</th>
@@ -61,3 +61,4 @@ function TeamDetails() {
 }
 
 export default TeamDetails;
+

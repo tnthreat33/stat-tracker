@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "./authSlice";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
+import "./loginForm.css"; // Import the same stylesheet as LoginForm
 
 const SignupForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [first_name, setFirstName] = useState("");
-  const[last_name, setLastName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [address, setAddress] = useState("");
   const [showLoginForm, setLoginForm] = useState(false);
-  const error = useSelector(state => state.auth.error) || [];
-  console.log(error)
+  const error = useSelector((state) => state.auth.error) || [];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,22 +24,22 @@ const SignupForm = () => {
       const newUser = {
         username,
         password,
-        email, 
+        email,
         first_name,
         last_name,
-        address
+        address,
       };
 
       const response = await dispatch(signup(newUser));
-      navigate("/")
-      
+      navigate("/");
+
       // Clear form fields
       // setUsername("");
       // setPassword("");
     } catch (error) {
-      console.log(error)
-      
-  }};
+      console.log(error);
+    }
+  };
 
   function handleShowLoginForm() {
     setLoginForm(true);
@@ -50,10 +50,11 @@ const SignupForm = () => {
   }
 
   return (
-    <div>
+    <div className="centered-container"> 
+    <div className="login-form-container"> {/* Apply the "login-form-container" class */}
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>Username:</label>
           <input
             type="text"
@@ -61,7 +62,7 @@ const SignupForm = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>Password:</label>
           <input
             type="password"
@@ -69,7 +70,7 @@ const SignupForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>Email:</label>
           <input
             type="text"
@@ -77,15 +78,15 @@ const SignupForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>First Name:</label>
           <input
             type="text"
             value={first_name}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          </div>
-          <div>
+        </div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>Last Name:</label>
           <input
             type="text"
@@ -93,7 +94,7 @@ const SignupForm = () => {
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
-        <div>
+        <div className="ui input"> {/* Apply the "ui input" class */}
           <label>Address:</label>
           <input
             type="text"
@@ -101,22 +102,25 @@ const SignupForm = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <button type="submit">Signup</button>
+        <button className="ui red button" type="submit"> {/* Apply the "ui.red.button" class */}
+          Signup
+        </button>
       </form>
-      <button onClick={handleShowLoginForm}>Login</button>
+      <button className="ui button" onClick={handleShowLoginForm}> {/* Apply the "ui.red.button" class */}
+        Login
+      </button>
       {error && error.errors && error.errors.length > 0 && (
-      <div>
-        
-        <ul>
-          {error.errors.map((errorMessage, index) => (
-            <li key={index}>{errorMessage}</li>
-          ))}
-        </ul>
-      </div>
-    )}
+        <div>
+          <ul>
+            {error.errors.map((errorMessage, index) => (
+              <li key={index}>{errorMessage}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
     </div>
   );
 };
-
 
 export default SignupForm;
