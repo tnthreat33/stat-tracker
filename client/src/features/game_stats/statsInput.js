@@ -19,6 +19,8 @@ function StatInput({ stats }) {
   const [runs, setRuns] = useState("");
   const [stolenBase, setStolenBase] = useState("");
   const error = useSelector((state) => state.stats.error) || [];
+  const availableGames = useSelector((state) => state.games.entities)
+  console.log(availableGames)
 
   const dispatch = useDispatch();
 
@@ -77,7 +79,7 @@ function StatInput({ stats }) {
     setSelectedPlayer(playerId);
   };
 
-  const availableGames = [...new Map(stats.map((stat) => [stat.game_id, stat])).values()];
+  //const availableGames = [...new Map(stats.map((stat) => [stat.game_id, stat])).values()];
 
   const availablePlayers = useSelector((state) => {
     const players = [];
@@ -207,13 +209,14 @@ function StatInput({ stats }) {
           <label>Game:</label>
           <select onChange={(event) => handleGameSelect(event.target.value)}>
             <option value="">Select an option</option>
-            {availableGames.map((option) => (
-              <option key={option.id} value={option.game_id}>
-                {option.game.away_team_name} vs. {option.game.home_team_name}
+            {availableGames.map((game) => (
+              <option key={game.id} value={game.id}>
+                {game.away_team_name} vs. {game.home_team_name}
               </option>
             ))}
           </select>
         </div>
+
 
         <div className="ui input">
           <label>Player:</label>

@@ -1,6 +1,13 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+export const fetchGames = createAsyncThunk("games/fetchGames", () => {
+  // return a Promise containing the data we want
+  return fetch("/games")
+    .then((response) => response.json())
+    .then((data) => data);
+});
+
   export const addGame = createAsyncThunk(
     'game/addGame',
     async (newGame, { dispatch, rejectWithValue }) => {
@@ -56,6 +63,13 @@ const gamesSlice = createSlice({
       state.status= "idle";
       state.error = action.payload;
     },
+    [fetchGames.pending](state) {
+      state.status = "loading";
+    },
+    [fetchGames.fulfilled](state, action) {
+      state.entities = action.payload;
+      state.status = "idle";
+    }, 
   },
 });
 

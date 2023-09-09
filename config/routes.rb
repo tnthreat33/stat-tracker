@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :game_stats 
   resources :users, only: [:show, :create]
   resources :players, only: [:create]
-  resources :games, only: [:create]
+  resources :games, only: [:create, :index]
 
   post "/login", to: "sessions#create"
   get "/auth", to: "users#show"
