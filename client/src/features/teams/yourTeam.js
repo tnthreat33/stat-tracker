@@ -38,7 +38,7 @@ function YourTeam() {
       <h1>{userId.name}</h1>
       {userTeams.map((userTeam) => (
         <div key={userTeam.id}>
-          <h2>{userTeam.name} - {userTeam.nickname}</h2>
+          <h1>{userTeam.name} - {userTeam.nickname}</h1>
           <p>Address: {userTeam.address}</p>
           <p>Wins: {userTeam.wins} - Losses: {userTeam.loses}</p>
           

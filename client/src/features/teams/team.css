@@ -1,28 +1,37 @@
 /* team.css */
 
-.team-card {
-    width: 200px; /* Adjust the card width as needed */
-    height: 200px; /* Set a fixed square shape */
-    background-color: #bf3604; /* Background color for the card */
-    border-radius: 10px; /* Add rounded corners */
-    padding: 20px; /* Add padding for content */
-    text-align: center;
-    color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
-  }
-  /* teams.css */
+/* teams.css */
 
 .team-container {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space evenly between items */
-    flex-wrap: wrap; /* Allow items to wrap to the next row */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  width: calc(33.33% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: #bf3604; /* Set the background color to orange */
+  border-radius: 10px; /* Add rounded corners */
+  padding: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .team-card {
+    width: calc(50% - 20px); /* 50% width on smaller screens */
   }
-  
-  
-  .team-card h2 {
-    font-size: 20px; /* Customize the title font size */
-    margin-bottom: 5px;
+}
+
+@media (max-width: 480px) {
+  .team-card {
+    width: 100%; /* Full width on even smaller screens */
+    margin-right: 0; /* No spacing between cards */
   }
+}
+
   
   .team-details-button {
     display: inline-block;

@@ -9,7 +9,6 @@ import StatInput from "./statsInput";
 function StatContainer() {
     const dispatch = useDispatch();
     const stats = useSelector((state) => state.stats.entities);
-    const status = useSelector((state) => state.stats.status);
     const [isInputVisible, setInputVisible] = useState(false); // State to manage form visibility
     
   
@@ -19,9 +18,9 @@ function StatContainer() {
     
     return (
       <div>
-        <p>All stats</p>
+        <h1>All stats</h1>
         
-        <button onClick={() => setInputVisible(!isInputVisible)}>
+        <button className="new-game-button" onClick={() => setInputVisible(!isInputVisible)}>
           Add New Stat
         </button>
         

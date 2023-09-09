@@ -39,7 +39,7 @@ function Schedule() {
           {userTeam.home_games.length > 0 ? (
             userTeam.home_games.map((game) => (
               <div key={game.id} className="game-card">
-                <p>{game.away_team_name} vs. {game.home_team_name}</p>
+                <h3>{game.away_team_name} vs. {game.home_team_name}</h3>
                 <ul>Date: {game.date} </ul>
                 <ul>Location: {game.city}, {game.state}</ul>
               </div>
@@ -52,9 +52,9 @@ function Schedule() {
           {userTeam.away_games.length > 0 ? (
             userTeam.away_games.map((game) => (
               <div key={game.id} className="game-card">
-                <p>{game.away_team_name} vs. {game.home_team_name}</p>
-                <p>Date: {game.date}</p>
-                <p>Location: {game.city}, {game.state}</p>
+                <h3>{game.away_team_name} vs. {game.home_team_name}</h3>
+                <ul>Date: {game.date}</ul>
+                <ul>Location: {game.city}, {game.state}</ul>
               </div>
             ))
           ) : (

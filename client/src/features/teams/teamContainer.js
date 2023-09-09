@@ -1,23 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeams } from "./teamsSlice";
 import TeamInput from "./teamsInput";
-import Teams from "./teams";
+import Team from "./team"; // Assuming you have a Team component
 
 function TeamContainer() {
   const dispatch = useDispatch();
   const teams = useSelector((state) => state.teams.entities);
-  const status = useSelector((state) => state.teams.status);
+  const [isInputVisible, setInputVisible] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchTeams()); 
+    dispatch(fetchTeams());
   }, [dispatch]);
-
 
   return (
     <div>
-      <TeamInput />
-      <Teams teams={teams} />
+      <button className="new-game-button" onClick={() => setInputVisible(!isInputVisible)}>
+        Add New Team
+      </button>
+
+      {isInputVisible && <TeamInput />}
+
+      <div className="team-container">
+        {teams.map((team) => (
+          <Team key={team.id} team={team} />
+        ))}
+      </div>
     </div>
   );
 }

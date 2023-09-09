@@ -1,24 +1,22 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteGameStat } from "./statSlice";
+import "../teams/yourTeam.css"; // Import your CSS file
 
-function Stat({ stats}) {
+
+function Stat({ stats }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   if (!stats) {
     return <div>Loading...</div>;
   }
 
-  
-
   const handleDeleteStat = (statId) => {
     dispatch(deleteGameStat(statId));
   };
 
-  // Group the stats by player
   const groupedStats = {};
   stats.forEach((stat) => {
     const playerId = stat.player.id;
@@ -29,13 +27,15 @@ function Stat({ stats}) {
   });
 
   return (
-    <div>
-       
-      <ul>
+    <div className="your-team">
+      
         {Object.keys(groupedStats).map((playerId) => (
-          <li key={playerId}>
-            <h3>{groupedStats[playerId][0].player.name} - {groupedStats[playerId][0].player.team_name}</h3>
-            <table>
+          <div key={playerId}>
+            <h3>
+              {groupedStats[playerId][0].player.name} -{" "}
+              {groupedStats[playerId][0].player.team_name}
+            </h3>
+            <table className="your-team-table">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -44,15 +44,14 @@ function Stat({ stats}) {
                   <th>K</th>
                   <th>RBI</th>
                   <th>AB</th>
-                  <th>AB</th>
-                    <th>BA</th>
-                    <th>Errors</th>
-                    <th>Fielding%</th>
-                    <th>H</th>
-                    <th>IP</th>
-                    <th>Runs</th>
-                    <th>SB</th>
-        
+                  <th>BA</th>
+                  <th>Errors</th>
+                  <th>Fielding%</th>
+                  <th>H</th>
+                  <th>IP</th>
+                  <th>Runs</th>
+                  <th>SB</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -76,11 +75,17 @@ function Stat({ stats}) {
                     <td>{stat.runs}</td>
                     <td>{stat.stolen_base}</td>
                     <td>
-                      <button onClick={() => handleDeleteStat(stat.id)}>Delete</button>
                       <button
+                        className="your-team-button"
+                        onClick={() => handleDeleteStat(stat.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="your-team-button"
                         onClick={() => {
-                          navigate(`/stats/update/${stat.id}`)
-                       }}
+                          navigate(`/stats/update/${stat.id}`);
+                        }}
                       >
                         Update
                       </button>
@@ -89,13 +94,11 @@ function Stat({ stats}) {
                 ))}
               </tbody>
             </table>
-          </li>
+          </div>
         ))}
-      </ul>
+      
     </div>
   );
 }
 
 export default Stat;
-
-
