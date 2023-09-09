@@ -1,14 +1,14 @@
 import React from "react";
 import Team from "./team";
+import "./team.css";
 
 function Teams({ teams }) {
-   
   return (
-    <ul>
+    <div className="team-container">
       {teams.map((r) => (
         <Team key={r.id} team={r} />
       ))}
-    </ul>
+    </div>
   );
 }
 

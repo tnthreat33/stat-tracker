@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./team.css";
 
 function Team({ team }) {
   if (!team) {
@@ -7,13 +8,14 @@ function Team({ team }) {
   }
 
   return (
-    <div>
-      <li>
-        {team.name}{" "}
-        <Link to={{ pathname: `/teams/${team.name}`, state: { team } }}>
-          Click for Team Details
-        </Link>
-      </li>
+    <div className="team-card">
+      <h2>{team.name}</h2>
+      <Link
+        to={{ pathname: `/teams/${team.name}`, state: { team } }}
+        className="team-details-button"
+      >
+        More Details
+      </Link>
     </div>
   );
 }
