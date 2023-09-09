@@ -4,6 +4,7 @@ import { fetchUserTeam } from "./teamsSlice";
 import { fetchPlayerGameStats } from "../game_stats/statSlice";
 import PlayerGameStats from "../players/playerGameStat";
 import "./yourTeam.css"
+import { Link } from "react-router-dom";
 
 function YourTeam() {
   const dispatch = useDispatch();
@@ -29,7 +30,14 @@ function YourTeam() {
  
 
   if (!userTeams || userTeams.length === 0) {
-    return <p>Loading...</p>;
+    return (
+      <div>
+        <p className="message">No Teams - Go to All Teams to Add Teams</p>
+        <Link to={{ pathname: `/teams` }} className="team-details-button">
+          More Details
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -41,6 +49,12 @@ function YourTeam() {
           <h1>{userTeam.name} - {userTeam.nickname}</h1>
           <p>Address: {userTeam.address}</p>
           <p>Wins: {userTeam.wins} - Losses: {userTeam.loses}</p>
+          <Link
+        to={{ pathname: `/teams/${userTeam.name}`, state: { userTeam } }}
+        className="team-details-button"
+      >
+        Add More Players
+      </Link>
           
 
           <h3>Players - Season Stats</h3>

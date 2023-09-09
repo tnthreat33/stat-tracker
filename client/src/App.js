@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { autoLogin } from "./features/user/authSlice";
+import { fetchTeams } from "./features/teams/teamsSlice";
 import TeamsContainer from "./features/teams/teamContainer";
 import TeamDetails from "./features/teams/teamDetails";
 import StatContainer from "./features/game_stats/statContainer";
@@ -27,6 +28,9 @@ function App() {
       .then((user) => {
         // Handle successful auto-login if needed
         console.log("Auto-login successful:", user);
+        
+          dispatch(fetchTeams());
+        
       })
       .catch((error) => {
         // Handle auto-login error
