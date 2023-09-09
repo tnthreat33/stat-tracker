@@ -23,7 +23,7 @@ function StatContainer() {
         <h1>All stats</h1>
         
         <button className="new-game-button" onClick={() => setInputVisible(!isInputVisible)}>
-          Add New Stat
+          {isInputVisible ? "Close" : "Add New Stat"}
         </button>
         
         {isInputVisible && <StatInput stats={stats} />} {/* Render StatInput if isInputVisible is true */}

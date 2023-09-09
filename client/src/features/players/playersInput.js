@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPlayer } from "./playersSlice";
+import { fetchTeams } from "../teams/teamsSlice";
 import "../teams/yourTeam.css"; // Import yourTeam.css stylesheet
 
 function PlayerInput({ team }) {
@@ -49,6 +50,8 @@ function PlayerInput({ team }) {
       if (response.payload) {
         navigate(`/teams/${team.name}`);
       }
+
+      dispatch(fetchTeams());
 
       setName("");
       setPosition("");

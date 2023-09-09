@@ -74,7 +74,8 @@ const teamsSlice = createSlice({
     [fetchTeams.fulfilled](state, action) {
       state.entities = action.payload;
       state.status = "idle";
-    }, [addTeam.fulfilled](state, action) {
+    }, 
+    [addTeam.fulfilled](state, action) {
       state.entities.push(action.payload); // Update the state with the newly added stat
       state.error = null;
     },

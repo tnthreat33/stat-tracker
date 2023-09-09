@@ -24,16 +24,16 @@ function TeamDetails() {
       <h2> {team.name}  " {team.nickname} "</h2>
         <h4> {team.address}</h4>
         <h4> {team.wins} - {team.loses} </h4>
-      <p>
-        <button
-          className="your-team-button" // Apply the "your-team-button" class
-          onClick={() => setInputVisible(!isInputVisible)}
-        >
-          Add New Player
-        </button>
+        <p>
+          <button
+            className="your-team-button" // Apply the "your-team-button" class
+            onClick={() => setInputVisible(!isInputVisible)}
+          >
+            {isInputVisible ? "Close" : "Add New Player"}
+          </button>
 
-        {isInputVisible && <PlayerInput team={team} />} {/* Render PlayerInput if isInputVisible is true */}
-      </p>
+          {isInputVisible && <PlayerInput team={team} />} {/* Render PlayerInput if isInputVisible is true */}
+        </p>
       <table>
         <thead>
           <tr>

@@ -25,11 +25,12 @@ function Schedule() {
     className="new-game-button"
     onClick={() => setInputVisible(!isInputVisible)}
   >
-    Add New Game
+    {isInputVisible ? "Close" : "Add New Game"}
   </button>
 
         {isInputVisible && <GameInput team={userTeams} userId={userId} />} {/* Render StatInput if isInputVisible is true */}
       </div>
+    
       {userTeams.map((userTeam) => (
         <div key={userTeam.id}>
           <h1>{userTeam.name} - {userTeam.nickname}</h1>
