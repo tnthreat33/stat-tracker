@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
@@ -130,6 +130,10 @@ const statSlice = createSlice({
       if (index !== -1) {
         state.entities.splice(index, 1);
       }},
+      [deleteGameStat.rejected](state, action) {
+        state.status = "idle";
+        state.error = action.payload;
+      },
   
   [updateGameStat.fulfilled](state, action) {
     const updatedStat = action.payload;

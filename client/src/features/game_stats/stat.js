@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { deleteGameStat } from "./statSlice";
 import "../teams/yourTeam.css"; // Import your CSS file
 
@@ -8,6 +8,7 @@ import "../teams/yourTeam.css"; // Import your CSS file
 function Stat({ stats }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
 
   if (!stats) {
     return <div>Loading...</div>;
@@ -81,6 +82,8 @@ function Stat({ stats }) {
                       >
                         Delete
                       </button>
+                      
+                      
                       <button
                         className="your-team-button"
                         onClick={() => {

@@ -1,0 +1,44 @@
+/* dashboard.css */
+
+/* Style for the chart container */
+.chart-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 200px;
+}
+  
+  /* Style for the chart title */
+  .chart-title {
+    color: white;
+    font-size: 20px;
+  }
+  
+  /* Style for the x-axis and y-axis labels and grid lines */
+  .chart-axis-labels,
+  .chart-grid-lines {
+    color: white;
+  }
+  
+  /* Style for the chart legend */
+  .chart-legend {
+    display: block;
+    position: bottom;
+  }
+  
+  /* Style for the chart line */
+  .chart-line {
+    background-color: rgba(75, 192, 192, 0.4);
+    border-color: rgba(255, 0, 0, 1);
+    border-width: 2px;
+  }
+  
+  /* Style for the data points */
+  .chart-data-points {
+    background-color: rgba(255, 0, 0, 1);
+  }
+
+  .header{
+    align-items: center;
+    color: #bf3604
+  }
+  

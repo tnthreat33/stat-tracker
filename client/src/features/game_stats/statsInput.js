@@ -20,7 +20,7 @@ function StatInput({ stats }) {
   const [stolenBase, setStolenBase] = useState("");
   const error = useSelector((state) => state.stats.error) || [];
   const availableGames = useSelector((state) => state.games.entities)
-  console.log(availableGames)
+  
 
   const dispatch = useDispatch();
 
