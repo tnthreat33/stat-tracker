@@ -3,13 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { Bar } from "react-chartjs-2";
 import { fetchUserTeam } from "../teams/teamsSlice";
 import "./dashboard.css";
+import Chart from 'chart.js/auto'
+
+
 
 
 const DashboardGraph = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam);
-
+  
+  
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);
