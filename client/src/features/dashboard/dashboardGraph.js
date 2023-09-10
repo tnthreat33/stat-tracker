@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Bar } from "react-chartjs-2";
 import { fetchUserTeam } from "../teams/teamsSlice";
 import "./dashboard.css";
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto';
+import SeasonStatDropdown from "./dashboardDropdown";
 
 
 
@@ -12,6 +13,7 @@ const DashboardGraph = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
   const userTeams = useSelector((state) => state.teams.userTeam);
+  const [selectedStat, setSelectedStat] = useState("batting_average");
   
   
   useEffect(() => {
@@ -26,25 +28,39 @@ const DashboardGraph = () => {
   const battingAverages = userTeams[0].players.map(
     (player) => player.season.batting_average
   );
+  const statDataKey = `${selectedStat}`;
 
+  const statData = userTeams[0].players.map(
+    (player) => player.season[statDataKey]
+  );
+
+ 
 
   const data = {
     labels: playerNames,
     datasets: [
       {
-        label: "Batting Average",
+        label: selectedStat.replace("_", " "), // Convert underscores to spaces for the label
         backgroundColor: "rgba(75, 192, 192, 0.4)",
         borderColor: "rgba(255, 0, 0, 1)",
         borderWidth: 2,
-        data: battingAverages
-      }
-    ]
+        data: statData,
+      },
+    ],
+  };
+
+  const handleStatChange = (selectedValue) => {
+    setSelectedStat(selectedValue);
   };
 
   return (
     <div className="chart-container">
-      <h3 className="chart-title">Average Batting Average per Player</h3>
-      <div className="chart-wrapper">
+    <h3 className="chart-title">Average {selectedStat.replace("_", " ")} per Player</h3>
+    <SeasonStatDropdown
+      onChange={handleStatChange}
+      selectedStat={selectedStat}
+    />
+    <div className="chart-wrapper">
         <Bar
           data={data}
           options={{
@@ -76,6 +92,8 @@ const DashboardGraph = () => {
                 },
                 ticks: {
                   color: "white",
+                  min: 0, // Adjust the minimum value as needed
+                  max: 10,
                   stepSize: 0.1
                 }
               }
