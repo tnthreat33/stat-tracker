@@ -16,15 +16,16 @@ const SeasonStatDropdown = ({ onChange, selectedStat }) => {
 
   return (
     <div className="season-stat-dropdown">
-      <label htmlFor="stat-select">Select Season Stat:</label>
+      <label htmlFor="stat-select">Select Season Stat:  </label>
       <select
+        className="select-box"
         id="stat-select"
         value={selectedStat}
         onChange={(e) => onChange(e.target.value)}
       >
         {statOptions.map((stat) => (
           <option key={stat} value={stat}>
-            {stat.replace("_", " ")} {/* Convert underscores to spaces */}
+            {stat.replace("_", " ")} 
           </option>
         ))}
       </select>

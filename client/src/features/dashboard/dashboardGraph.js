@@ -9,16 +9,13 @@ import SeasonStatDropdown from "./dashboardDropdown";
 
 
 
-const DashboardGraph = () => {
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.user);
-  const userTeams = useSelector((state) => state.teams.userTeam);
+const DashboardGraph = ({userTeams}) => {
+  
+  
   const [selectedStat, setSelectedStat] = useState("batting_average");
   
   
-  useEffect(() => {
-    dispatch(fetchUserTeam(userId));
-  }, [dispatch, userId]);
+  
 
   if (!userTeams || userTeams.length === 0 || !userTeams[0].players) {
     return <div>Loading...</div>;
@@ -55,7 +52,7 @@ const DashboardGraph = () => {
 
   return (
     <div className="chart-container">
-    <h3 className="chart-title">Average {selectedStat.replace("_", " ")} per Player</h3>
+    <h3 className="chart-title uppercase">{selectedStat.replace("_", " ")} per Player</h3>
     <SeasonStatDropdown
       onChange={handleStatChange}
       selectedStat={selectedStat}

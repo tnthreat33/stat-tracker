@@ -2,17 +2,33 @@
 
 /* Style for the chart container */
 .chart-container {
-    width: 80%;
+    width: 99%;
+    height: 400px;
     margin: 0 auto;
-    padding-top: 100px; /* Adjust the padding-top as needed */
+    padding-top: 100px; 
+    border: 2px solid white;
     
 }
+.season-stat-dropdown{
+    margin-bottom: 40px;
+    font-size: 20px;
+}
   
-  /* Style for the chart title */
-  .chart-title {
+ 
+.chart-title {
     color: white;
     font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center; 
   }
+  .chart-title.uppercase {
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
   
   /* Style for the x-axis and y-axis labels and grid lines */
   .chart-axis-labels,
@@ -39,7 +55,65 @@
   }
 
   .header{
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+  }
+  .stat-boxes-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+
+  .stat-box {
+    background:  #bf3604;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px; /* Add margin to create space between stat boxes */
+    width: 200px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    color: #bf3604
+    text-align: center; /* Center text horizontally */
+  }
+  
+  /* Style for stat box title */
+  .stat-box h4 {
+    font-size: 18px;
+    color: #0c0c0d;
+    margin-bottom: 30px;
+    background-color: white; /* Your background color */
+    padding: 10px; /* Add some padding to create space and round the corners */
+    border-radius: 10px; /* Add rounded corners */
+    text-align: center; /* Center the text horizontally */
+  }
+  
+  /* Style for player name and season stat */
+  .stat-box p {
+    font-size: 16px;
+    color: white;
+    margin: 0; /* Remove margin to ensure elements are aligned */
+  }
+  
+
+.select-box {
+    width: 200px;
+    background-color: #bf3604;
+    color: white;
+    border-radius: 25px;
+    padding: 10px 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none; /* Remove the default dropdown border */
+    outline: none; /* Remove the focus outline */
+    cursor: pointer; /* Change cursor on hover */
+  }
+  
+  /* Style for dropdown options */
+  .select-box option {
+    background-color: #bf3604;
+    color: white;
   }
   
