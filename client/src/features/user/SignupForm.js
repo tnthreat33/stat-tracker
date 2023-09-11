@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, signup } from "./authSlice";
 import LoginForm from "./LoginForm";
 import { useNavigate } from "react-router-dom";
-import "./loginForm.css"; // Import the same stylesheet as LoginForm
+import "./loginForm.css"; 
 
 const SignupForm = () => {
   const dispatch = useDispatch();
@@ -51,10 +51,10 @@ const SignupForm = () => {
 
   return (
     <div className="centered-container"> 
-    <div className="login-form-container"> {/* Apply the "login-form-container" class */}
+    <div className="login-form-container"> 
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>Username:</label>
           <input
             type="text"
@@ -62,7 +62,7 @@ const SignupForm = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>Password:</label>
           <input
             type="password"
@@ -70,7 +70,7 @@ const SignupForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>Email:</label>
           <input
             type="text"
@@ -78,7 +78,7 @@ const SignupForm = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>First Name:</label>
           <input
             type="text"
@@ -86,7 +86,7 @@ const SignupForm = () => {
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>Last Name:</label>
           <input
             type="text"
@@ -94,7 +94,7 @@ const SignupForm = () => {
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>Address:</label>
           <input
             type="text"
@@ -102,11 +102,11 @@ const SignupForm = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
         </div>
-        <button className="ui red button" type="submit"> {/* Apply the "ui.red.button" class */}
+        <button className="ui red button" type="submit"> 
           Signup
         </button>
       </form>
-      <button className="ui button" onClick={handleShowLoginForm}> {/* Apply the "ui.red.button" class */}
+      <button className="ui button" onClick={handleShowLoginForm}> 
         Login
       </button>
       {error && error.errors && error.errors.length > 0 && (

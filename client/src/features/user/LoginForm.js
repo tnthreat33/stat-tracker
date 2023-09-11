@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "./authSlice"; // Import the action creators
+import { login } from "./authSlice"; 
 import SignupForm from "./SignupForm";
 import "./loginForm.css"
 
@@ -22,13 +22,11 @@ const LoginForm = () => {
         password,
       };
 
-      // Dispatch the login action and await its completion
+      
       dispatch(login(credentials));
 
-      // Handle successful login if needed (e.g., redirect)
       navigate("/");
 
-      // Clear form fields
       setUsername("");
       setPassword("");
     } catch (error) {

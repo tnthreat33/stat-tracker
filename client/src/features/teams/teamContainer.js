@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTeams } from "./teamsSlice";
 import TeamInput from "./teamsInput";
-import Team from "./team"; // Assuming you have a Team component
+import Team from "./team"; 
 
 function TeamContainer() {
   const dispatch = useDispatch();

@@ -10,8 +10,7 @@ import StatInput from "./statsInput";
 function StatContainer() {
     const dispatch = useDispatch();
     const stats = useSelector((state) => state.stats.entities);
-    const [isInputVisible, setInputVisible] = useState(false); // State to manage form visibility
-    console.log(stats)
+    const [isInputVisible, setInputVisible] = useState(false); 
   
     useEffect(() => {
       dispatch(fetchStats());
@@ -26,7 +25,7 @@ function StatContainer() {
           {isInputVisible ? "Close" : "Add New Stat"}
         </button>
         
-        {isInputVisible && <StatInput stats={stats} />} {/* Render StatInput if isInputVisible is true */}
+        {isInputVisible && <StatInput stats={stats} />} 
      
         <Stat stats={stats} />
         </div>

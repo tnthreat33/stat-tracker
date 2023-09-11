@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPlayer } from "./playersSlice";
 import { fetchTeams } from "../teams/teamsSlice";
-import "../teams/yourTeam.css"; // Import yourTeam.css stylesheet
+import "../teams/yourTeam.css"; 
 
 function PlayerInput({ team }) {
   const [name, setName] = useState("");
@@ -66,9 +66,9 @@ function PlayerInput({ team }) {
   };
 
   return (
-    <div className="login-form-container"> {/* Apply the "login-form-container" class */}
+    <div className="login-form-container"> 
       <form onSubmit={handleSubmit}>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input">
           <label>
             Name
             <input
@@ -79,7 +79,7 @@ function PlayerInput({ team }) {
             />
           </label>
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>
             Graduation Year
             <input
@@ -90,7 +90,7 @@ function PlayerInput({ team }) {
             />
           </label>
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>
             Position
             <input
@@ -101,7 +101,7 @@ function PlayerInput({ team }) {
             />
           </label>
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>
             Dominate Hand
             <input
@@ -112,7 +112,7 @@ function PlayerInput({ team }) {
             />
           </label>
         </div>
-        <div className="ui input"> {/* Apply the "ui input" class */}
+        <div className="ui input"> 
           <label>
             Jersey Number
             <input
@@ -123,7 +123,7 @@ function PlayerInput({ team }) {
             />
           </label>
         </div>
-        <button className="ui red button" type="submit"> {/* Apply the "ui.red.button" class */}
+        <button className="ui red button" type="submit"> 
           Add Player
         </button>
       </form>

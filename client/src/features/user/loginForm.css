@@ -1,4 +1,4 @@
-/* LoginForm.css */
+
 .login-form-container {
   background-color: #bf3604;
   color: white;
@@ -22,21 +22,21 @@
   margin-bottom: 10px;
 }
 
-/* Style the input fields */
+
 .ui.input input {
-  width: 80%; /* Make the input fields wider */
-  border-radius: 25px; /* Add rounded corners to the input fields */
-  padding: 10px; /* Adjust padding for better spacing */
-  font-size: 16px; /* Increase font size for better readability */
+  width: 80%; 
+  border-radius: 25px; 
+  padding: 10px; 
+  font-size: 16px; 
   align-items: center;
 }
 
 button.ui.button {
-  width: 80%; /* Make buttons wider */
+  width: 80%; 
   color: #0C0C0D;
-  border-radius: 25px; /* Add curved corners */
-  padding: 10px 20px; /* Adjust padding for shorter buttons */
-  font-size: 16px; /* Increase font size for better readability */
+  border-radius: 25px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
   margin-top: 10px;
   align-items: center;
 }
@@ -45,13 +45,13 @@ button.ui.button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Set the container height to 100% of the viewport height */
+  height: 100vh; 
 }
 
 button.ui.red.button {
   width: 80%;
   background-color: #590F08;
-  color: white; /* White text on red background */
-  margin-top: 10px; /* Add margin between login and sign-up buttons */
+  color: white; 
+  margin-top: 10px; 
   align-items: center;
 }

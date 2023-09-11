@@ -31,7 +31,6 @@ function TeamInput() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Create an object with the collected data
     const newTeam = {
       name,
       nickname,
@@ -41,10 +40,10 @@ function TeamInput() {
     };
 
     try {
-      // Dispatch the action to send the new game stat data to the backend
+      
       await dispatch(addTeam(newTeam));
 
-      // Clear input fields
+      
       setName("");
       setNickName("");
       setAddress("");

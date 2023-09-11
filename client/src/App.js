@@ -23,17 +23,16 @@ function App() {
   
 
   useEffect(() => {
-    // Dispatch the auto-login action on component mount
     dispatch(autoLogin())
       .then((user) => {
-        // Handle successful auto-login if needed
+        
         console.log("Auto-login successful:", user);
         
           dispatch(fetchTeams());
         
       })
       .catch((error) => {
-        // Handle auto-login error
+       
         console.error("Auto-login error:", error);
       });
   }, [dispatch]);

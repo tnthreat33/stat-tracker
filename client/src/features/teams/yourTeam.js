@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function YourTeam() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
-  const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
+  const userTeams = useSelector((state) => state.teams.userTeam); 
   const playerStats = useSelector((state)=> state.stats.playerGameStats)
   
  
@@ -18,12 +18,12 @@ function YourTeam() {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);
 
-  const [selectedPlayer, setSelectedPlayer] = useState(null); // Add a state to track the selected player
+  const [selectedPlayer, setSelectedPlayer] = useState(null); 
 
   const handlePlayerClick = (playerId) => {
-    // When a player is clicked, fetch their game stats
+    
     dispatch(fetchPlayerGameStats(playerId));
-    setSelectedPlayer(playerId); // Set the selected player's ID
+    setSelectedPlayer(playerId); 
   };
 
  

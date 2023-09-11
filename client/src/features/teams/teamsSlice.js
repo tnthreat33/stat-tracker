@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {
-    // return a Promise containing the data we want
+    
     return fetch("/teams")
       .then((response) => response.json())
       .then((data) => data);
@@ -38,13 +38,13 @@ export const fetchTeams = createAsyncThunk("teams/fetchTeams", () => {
   
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
         return data;
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -67,7 +67,7 @@ const teamsSlice = createSlice({
     
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
+    
     [fetchTeams.pending](state) {
       state.status = "loading";
     },
@@ -76,7 +76,7 @@ const teamsSlice = createSlice({
       state.status = "idle";
     }, 
     [addTeam.fulfilled](state, action) {
-      state.entities.push(action.payload); // Update the state with the newly added stat
+      state.entities.push(action.payload); 
       state.error = null;
     },
     [addTeam.rejected](state, action){
@@ -87,7 +87,7 @@ const teamsSlice = createSlice({
       state.status = "loading";
     },
     [fetchUserTeam.fulfilled](state, action) {
-      state.userTeam = action.payload; // Update the user's team data
+      state.userTeam = action.payload; 
       state.status = "idle";
       state.error = null;
     },

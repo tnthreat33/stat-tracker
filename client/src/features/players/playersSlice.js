@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
   export const addPlayer = createAsyncThunk(
@@ -15,7 +15,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
   
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
@@ -23,7 +23,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
         return data;
         
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -44,9 +44,9 @@ const playersSlice = createSlice({
     },
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
+    
     [addPlayer.fulfilled](state, action) {
-      state.entities.push(action.payload); // Update the state with the newly added stat
+      state.entities.push(action.payload); 
       state.error = null;
        
     },

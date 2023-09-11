@@ -1,4 +1,4 @@
-/* NavBar.css */
+
 
 .navbar {
   width: 170px;
@@ -35,7 +35,7 @@
   padding-bottom: 5px;
 }
 
-/* Add a line only under the "Your Schedule" link */
+
 .navbar li a.schedule {
   
   padding-bottom: 25px;
@@ -47,11 +47,11 @@
 }
 
 .navbar button {
-  width: 50%; /* Make buttons wider */
+  width: 50%; 
   color: #150926;
-  border-radius: 25px; /* Add curved corners */
-  padding: 5px 10px; /* Adjust padding for shorter buttons */
-  font-size: 12px; /* Increase font size for better readability */
+  border-radius: 25px; 
+  padding: 5px 10px; 
+  font-size: 12px; 
   margin-top: 10px;
   align-items: center;
 }

@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchGames = createAsyncThunk("games/fetchGames", () => {
-  // return a Promise containing the data we want
+  
   return fetch("/games")
     .then((response) => response.json())
     .then((data) => data);
@@ -22,7 +22,7 @@ export const fetchGames = createAsyncThunk("games/fetchGames", () => {
   
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
@@ -32,7 +32,7 @@ export const fetchGames = createAsyncThunk("games/fetchGames", () => {
         return data;
         
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -53,9 +53,9 @@ const gamesSlice = createSlice({
     },
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
+    
     [addGame.fulfilled](state, action) {
-      state.entities.push(action.payload); // Update the state with the newly added stat
+      state.entities.push(action.payload); 
       state.error = null;
        
     },

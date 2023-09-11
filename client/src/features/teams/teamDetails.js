@@ -15,7 +15,7 @@ function TeamDetails() {
   }
 
   return (
-    <div className="your-team"> {/* Apply the "your-team" class */}
+    <div className="your-team"> 
       <p>
         <Link to={{ pathname: `/teams` }} className="team-details-button">
           Back To Teams
@@ -26,13 +26,13 @@ function TeamDetails() {
         <h4> {team.wins} - {team.loses} </h4>
         <p>
           <button
-            className="your-team-button" // Apply the "your-team-button" class
+            className="your-team-button" 
             onClick={() => setInputVisible(!isInputVisible)}
           >
             {isInputVisible ? "Close" : "Add New Player"}
           </button>
 
-          {isInputVisible && <PlayerInput team={team} />} {/* Render PlayerInput if isInputVisible is true */}
+          {isInputVisible && <PlayerInput team={team} />} 
         </p>
       <table>
         <thead>

@@ -7,7 +7,7 @@ import "./gameCard.css"
 function Schedule() {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.user);
-  const userTeams = useSelector((state) => state.teams.userTeam); // Assuming this is an array
+  const userTeams = useSelector((state) => state.teams.userTeam);
   const [isInputVisible, setInputVisible] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function Schedule() {
     {isInputVisible ? "Close" : "Add New Game"}
   </button>
 
-        {isInputVisible && <GameInput team={userTeams} userId={userId} />} {/* Render StatInput if isInputVisible is true */}
+        {isInputVisible && <GameInput team={userTeams} userId={userId} />} 
       </div>
     
       {userTeams.map((userTeam) => (

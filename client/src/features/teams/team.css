@@ -1,6 +1,4 @@
-/* team.css */
 
-/* teams.css */
 
 .team-container {
   display: flex;
@@ -11,8 +9,8 @@
   width: calc(33.33% - 20px);
   margin-right: 20px;
   margin-bottom: 20px;
-  background-color: #bf3604; /* Set the background color to orange */
-  border-radius: 10px; /* Add rounded corners */
+  background-color: #bf3604; 
+  border-radius: 10px; 
   padding: 20px;
   text-align: center;
   color: white;
@@ -21,30 +19,30 @@
 
 @media (max-width: 768px) {
   .team-card {
-    width: calc(50% - 20px); /* 50% width on smaller screens */
+    width: calc(50% - 20px); 
   }
 }
 
 @media (max-width: 480px) {
   .team-card {
-    width: 100%; /* Full width on even smaller screens */
-    margin-right: 0; /* No spacing between cards */
+    width: 100%; 
+    margin-right: 0; 
   }
 }
 
   
   .team-details-button {
     display: inline-block;
-    background-color: #150926; /* Background color for the button */
+    background-color: #150926; 
     color: white;
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 5px; /* Add rounded corners to the button */
+    padding: 10px 20px;
+    border-radius: 5px; 
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    transition: background-color 0.3s ease; 
   }
   
   .team-details-button:hover {
-    background-color: #bf3604; /* Change the button background color on hover */
+    background-color: #bf3604; 
   }
   

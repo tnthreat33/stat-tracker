@@ -2,7 +2,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
-    // return a Promise containing the data we want
+   
     return fetch("/game_stats")
       .then((response) => response.json())
       .then((data) => data);
@@ -21,13 +21,13 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
   
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
         return data;
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -38,14 +38,14 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
         const response = await fetch(`/game_stats/player/${playerId}`);
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
         
         return data; 
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -59,7 +59,7 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
         throw new Error("Failed to delete game stat");
       }
   
-      return statId; // Return the ID of the deleted stat
+      return statId; 
     } catch (error) {
       throw error;
     }
@@ -79,13 +79,13 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
   
         if (!response.ok) {
           const errorData = await response.json();
-          return rejectWithValue(errorData); // Reject with the error payload
+          return rejectWithValue(errorData); 
         }
   
         const data = await response.json();
         return data;
       } catch (error) {
-        return rejectWithValue(error.message); // Reject with the error message
+        return rejectWithValue(error.message); 
       }
     }
   );
@@ -93,7 +93,7 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
 const statSlice = createSlice({
   name: "stats",
   initialState: {
-    entities: [], // Existing game_stat data
+    entities: [], 
     status: "idle",
     error: null,
     playerGameStats: [],
@@ -108,7 +108,7 @@ const statSlice = createSlice({
     },
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
+    
     [fetchStats.pending](state) {
       state.status = "loading";
     },
@@ -117,7 +117,7 @@ const statSlice = createSlice({
       state.status = "idle";
     },
     [addGameStat.fulfilled](state, action) {
-      state.entities.push(action.payload); // Update the state with the newly added stat
+      state.entities.push(action.payload); 
       state.error = null;
     },
     [addGameStat.rejected](state, action){
@@ -139,7 +139,7 @@ const statSlice = createSlice({
     const updatedStat = action.payload;
     const index = state.entities.findIndex((stat) => stat.id === updatedStat.id);
     if (index !== -1) {
-      state.entities[index] = updatedStat; // Update the state with the updated stat
+      state.entities[index] = updatedStat; 
     }
     state.error = null;
   },
@@ -148,7 +148,7 @@ const statSlice = createSlice({
     state.error = action.payload;
   },
   [fetchPlayerGameStats.fulfilled](state, action) {
-    state.playerGameStats = action.payload; // Store the fetched game stats in state
+    state.playerGameStats = action.payload; 
     state.error = null;
   },
   [fetchPlayerGameStats.rejected](state, action) {

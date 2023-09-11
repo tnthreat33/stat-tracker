@@ -36,7 +36,6 @@ function GameInput({ team, userId }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Create an object with the collected data
     const newGame = {
       home_team_id: home_team,
       away_team_id: away_team,
@@ -46,16 +45,15 @@ function GameInput({ team, userId }) {
     };
 
     try {
-      // Dispatch the action to send the new player data to the backend
-      const response = await dispatch(addGame(newGame)); // Await the dispatch
+      const response = await dispatch(addGame(newGame)); 
 
-      // Check if the response indicates success
+      
       if (response.payload) {
         navigate(`/schedule`);
       }
       await dispatch(fetchUserTeam(userId))
 
-      // Clear input fields
+      
       setHomeTeam("");
       setAwayTeam("");
       setDate("");

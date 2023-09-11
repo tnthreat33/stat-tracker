@@ -1,12 +1,10 @@
-/* yourTeam.css */
 
-/* Apply white text color to all text in the component */
 .your-team {
   color: white;
   padding-bottom: 20px;
 }
 
-/* Style the table */
+
 .your-team table {
   width: auto;
   border-collapse: collapse;
@@ -15,7 +13,7 @@
   color: black;
 }
 
-/* Style the table headers with the color #bf3604 and center-align the labels */
+
 .your-team th {
   color: #bf3604;
   text-align: center;
@@ -23,30 +21,30 @@
   border: 1px solid black;
 }
 
-/* Style the "Name" column and center-align the labels */
+
 .your-team th.name,
 .your-team td.name {
   text-align: center;
 }
 
-/* Style the "Position" column and center-align the labels */
+
 .your-team th.position,
 .your-team td.position {
   text-align: center;
 }
 
-/* Style the "Show Game Stats" column and center-align the labels */
+
 .your-team th.show-stats,
 .your-team td.show-stats {
   text-align: center;
 }
 
-/* Style every other row with a light gray background */
+
 .your-team tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Style the table cells with padding for spacing */
+
 .your-team td {
   padding: 8px;
   text-align: center;
@@ -56,7 +54,7 @@
   border: 1px solid black;
 }
 
-/* Add space between table cells */
+
 .your-team td.name {
   padding-left: 0;
   text-align: left;
@@ -66,7 +64,7 @@
   padding-right: 0;
 }
 
-/* Style the button with the color #bf3604, reduced size, and no border */
+
 .your-team button {
   background-color: #bf3604;
   color: white;
@@ -76,7 +74,7 @@
   border: none;
 }
 
-/* Style the header background color */
+
 .your-team h3 {
   background-color: #bf3604;
   padding: 10px;

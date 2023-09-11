@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGameStat } from "./statSlice";
 import Dropdown from "./dropdown";
-import "../games/gameInput.css"; // Import your CSS file
+import "../games/gameInput.css"; 
 
 function StatInput({ stats }) {
   const [selectedGame, setSelectedGame] = useState("");
@@ -27,7 +27,6 @@ function StatInput({ stats }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Create an object with the collected data
     const newStat = {
       game_id: selectedGame,
       player_id: selectedPlayer,
@@ -46,10 +45,10 @@ function StatInput({ stats }) {
     };
 
     try {
-      // Dispatch the action to send the new game stat data to the backend
+      
       await dispatch(addGameStat(newStat));
 
-      // Clear input fields
+      
       setERA("");
       setK("");
       setRBI("");
@@ -65,7 +64,7 @@ function StatInput({ stats }) {
       setSelectedPlayer("");
     } catch (error) {
       if (error.response && error.response.status === 422) {
-        // Set the backendErrors state with the error messages
+        
         console.log(error);
       }
     }
@@ -79,12 +78,12 @@ function StatInput({ stats }) {
     setSelectedPlayer(playerId);
   };
 
-  //const availableGames = [...new Map(stats.map((stat) => [stat.game_id, stat])).values()];
+  
 
   const availablePlayers = useSelector((state) => {
     const players = [];
     state.teams.entities.forEach((team) => {
-      players.push(...team.players); // Assuming each team has a "players" property
+      players.push(...team.players); 
     });
     return players;
   });

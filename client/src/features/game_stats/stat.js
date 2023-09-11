@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { deleteGameStat } from "./statSlice";
-import "../teams/yourTeam.css"; // Import your CSS file
+import "../teams/yourTeam.css";
 
 
 function Stat({ stats }) {

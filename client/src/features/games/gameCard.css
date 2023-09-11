@@ -1,19 +1,19 @@
-/* Add this CSS to your existing CSS file */
+
 
 .game-card {
     background-color: #bf3604;
-    border-radius: 10px; /* Adjust the radius as needed */
-    padding: 10px; /* Add padding for spacing */
-    margin-bottom: 10px; /* Add margin between game cards */
-    color: white; /* Text color for game cards */
+    border-radius: 10px; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    color: white; 
   }
 
   .new-game-button {
     background-color: #590f08;
     color: white;
-    border: none; /* Remove button border if needed */
-    border-radius: 5px; /* Add rounded corners to the button */
-    padding: 10px 20px; /* Adjust padding for spacing */
-    font-size: 16px; /* Increase font size for better readability */
-    cursor: pointer; /* Add pointer cursor on hover */
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
   }

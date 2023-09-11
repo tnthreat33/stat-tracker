@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { updateGameStat, fetchStats } from "./statSlice";
-import "./stats.css"; // Import yourTeam.css stylesheet
+import "./stats.css"; 
 
 function StatUpdateForm() {
   const { statId } = useParams();
@@ -67,10 +67,9 @@ function StatUpdateForm() {
   });
 
   return (
-    <div className="form-container"> {/* Apply the "login-form-container" class */}
+    <div className="form-container"> 
       <h2>Edit Stat</h2>
       <form onSubmit={handleSubmit}>
-        {/* Apply the "stat input" class to each input */}
         <div className="stat input">
           <label>ERA:</label>
           <input
@@ -173,7 +172,7 @@ function StatUpdateForm() {
           />
         </div>
 
-        <div className="stat input"> {/* Apply the "stat input" class */}
+        <div className="stat input"> 
           <label>Game:</label>
           <select name="game_id" value={updatedStat.game_id} onChange={handleInputChange}>
             <option value="">Select an option</option>
@@ -185,7 +184,7 @@ function StatUpdateForm() {
           </select>
         </div>
 
-        <div className="stat input"> {/* Apply the "stat input" class */}
+        <div className="stat input"> 
           <label>Player:</label>
           <select name="player_id" value={updatedStat.player_id} onChange={handleInputChange}>
             <option value="">Select an option</option>
@@ -197,7 +196,7 @@ function StatUpdateForm() {
           </select>
         </div>
 
-        <button className="stat button" type="submit"> {/* Apply the "ui.red.button" class */}
+        <button className="stat button" type="submit"> 
           Update
         </button>
       </form>

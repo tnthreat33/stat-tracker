@@ -1,6 +1,4 @@
-/* dashboard.css */
 
-/* Style for the chart container */
 .chart-container {
     width: 99%;
     height: 400px;
@@ -30,26 +28,26 @@
   }
   
   
-  /* Style for the x-axis and y-axis labels and grid lines */
+  
   .chart-axis-labels,
   .chart-grid-lines {
     color: white;
   }
   
-  /* Style for the chart legend */
+  
   .chart-legend {
     display: block;
     position: bottom;
   }
   
-  /* Style for the chart line */
+  
   .chart-line {
     background-color: rgba(75, 192, 192, 0.4);
     border-color: rgba(255, 0, 0, 1);
     border-width: 2px;
   }
   
-  /* Style for the data points */
+  
   .chart-data-points {
     background-color: rgba(255, 0, 0, 1);
   }
@@ -69,32 +67,32 @@
     background:  #bf3604;
     border-radius: 10px;
     padding: 20px;
-    margin: 20px; /* Add margin to create space between stat boxes */
+    margin: 20px; 
     width: 200px;
     height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center; /* Center text horizontally */
+    text-align: center; 
   }
   
-  /* Style for stat box title */
+  
   .stat-box h4 {
     font-size: 18px;
     color: #0c0c0d;
     margin-bottom: 30px;
-    background-color: white; /* Your background color */
-    padding: 10px; /* Add some padding to create space and round the corners */
-    border-radius: 10px; /* Add rounded corners */
-    text-align: center; /* Center the text horizontally */
+    background-color: white; 
+    padding: 10px; 
+    border-radius: 10px; 
+    text-align: center; 
   }
   
-  /* Style for player name and season stat */
+  
   .stat-box p {
     font-size: 16px;
     color: white;
-    margin: 0; /* Remove margin to ensure elements are aligned */
+    margin: 0; 
   }
   
 
@@ -106,12 +104,12 @@
     padding: 10px 10px;
     font-size: 16px;
     margin-top: 10px;
-    border: none; /* Remove the default dropdown border */
-    outline: none; /* Remove the focus outline */
-    cursor: pointer; /* Change cursor on hover */
+    border: none; 
+    outline: none; 
+    cursor: pointer; 
   }
   
-  /* Style for dropdown options */
+  
   .select-box option {
     background-color: #bf3604;
     color: white;

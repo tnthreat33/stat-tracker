@@ -25,11 +25,11 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
         throw new Error("Logout request failed");
       }
       
-      return; // No need to return anything here
+      return; 
   
     } catch (error) {
       console.log("Logout error:", error);
-      throw error; // Rethrow the error to be caught by the caller
+      throw error; 
     }
   });
   
@@ -46,13 +46,13 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
   
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData); // Reject with the error payload
+        return rejectWithValue(errorData); 
       }
   
       const data = await response.json();
       return data;
     } catch (error) {
-      return rejectWithValue(error.message); // Reject with the error message
+      return rejectWithValue(error.message); 
     }
   });
   
@@ -70,13 +70,13 @@ export const autoLogin = createAsyncThunk('auth/autoLogin', async () => {
   
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData); // Reject with the error payload
+        return rejectWithValue(errorData); 
       }
   
       const data = await response.json();
       return data;
     } catch (error) {
-      return rejectWithValue(error.message); // Reject with the error message
+      return rejectWithValue(error.message); 
     }
   });
   
@@ -106,7 +106,7 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
-    // handle async actions: pending, fulfilled, rejected (for errors)
+    
     [autoLogin.pending](state) {
       state.isAuthenticated = "loading";
     },

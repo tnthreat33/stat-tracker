@@ -7,14 +7,8 @@ import Chart from 'chart.js/auto';
 import SeasonStatDropdown from "./dashboardDropdown";
 
 
-
-
 const DashboardGraph = ({userTeams}) => {
-  
-  
   const [selectedStat, setSelectedStat] = useState("batting_average");
-  
-  
   
 
   if (!userTeams || userTeams.length === 0 || !userTeams[0].players) {
@@ -37,7 +31,7 @@ const DashboardGraph = ({userTeams}) => {
     labels: playerNames,
     datasets: [
       {
-        label: selectedStat.replace("_", " "), // Convert underscores to spaces for the label
+        label: selectedStat.replace("_", " "), 
         backgroundColor: "rgba(75, 192, 192, 0.4)",
         borderColor: "rgba(255, 0, 0, 1)",
         borderWidth: 2,
@@ -79,7 +73,7 @@ const DashboardGraph = ({userTeams}) => {
                 ticks: {
                   color: "white",
                   callback: function (value, index) {
-                    return data.labels[index]; // Display player names from the 'labels' array
+                    return data.labels[index]; 
                   }
                 }
               },
@@ -89,7 +83,7 @@ const DashboardGraph = ({userTeams}) => {
                 },
                 ticks: {
                   color: "white",
-                  min: 0, // Adjust the minimum value as needed
+                  min: 0, 
                   max: 10,
                   stepSize: 0.1
                 }
@@ -97,8 +91,7 @@ const DashboardGraph = ({userTeams}) => {
             },
             responsive: true,
             maintainAspectRatio: false,
-            // Double the size by setting aspectRatio to 4
-            aspectRatio: 100, // Adjust the aspectRatio as needed
+            aspectRatio: 100, 
             responsiveAnimationDuration: 200,
             animation: {
               duration: 1000,
