@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DashboardGraph from "./dashboardGraph";
 import "./dashboard.css"
@@ -13,6 +13,10 @@ function Dashboard (){
     useEffect(() => {
         dispatch(fetchUserTeam(userId));
       }, [dispatch, userId]);
+
+      if (!userTeams || userTeams.length === 0) {
+        return <div>Loading...</div>; // You can display a loading message or handle this case as you prefer
+    }
     
       function findPlayerWithMostHits(players) {
         let maxHits = 0;

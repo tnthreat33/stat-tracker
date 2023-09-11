@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { Bar } from "react-chartjs-2";
-import { fetchUserTeam } from "../teams/teamsSlice";
 import "./dashboard.css";
 import Chart from 'chart.js/auto';
 import SeasonStatDropdown from "./dashboardDropdown";
@@ -16,9 +14,7 @@ const DashboardGraph = ({userTeams}) => {
   }
 
   const playerNames = userTeams[0].players.map((player) => player.name);
-  const battingAverages = userTeams[0].players.map(
-    (player) => player.season.batting_average
-  );
+  
   const statDataKey = `${selectedStat}`;
 
   const statData = userTeams[0].players.map(
