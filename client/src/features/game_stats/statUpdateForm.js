@@ -13,7 +13,6 @@ function StatUpdateForm() {
   const error = useSelector((state) => state.stats.error) || [];
 
   console.log(error)
-
   useEffect(() => {
     dispatch(fetchStats());
   }, [dispatch]);
@@ -69,6 +68,12 @@ function StatUpdateForm() {
   });
 
   return (
+    <div>
+    <h3>
+  {error && error.error.length > 0 && (
+    <div className="error-alert-update">!! {error.error} !!</div>
+  )}
+</h3>
     <div className="form-container"> 
       <h2>Edit Stat</h2>
       <form onSubmit={handleSubmit}>
@@ -202,7 +207,7 @@ function StatUpdateForm() {
           Update
         </button>
       </form>
-      {error.error && error.error.length > 0 && (
+      {/* {error.error && error.error.length > 0 && (
         <div>
           <p>Errors:</p>
           <ul>
@@ -211,7 +216,8 @@ function StatUpdateForm() {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
+    </div>
     </div>
   );
 }

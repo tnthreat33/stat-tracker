@@ -23,7 +23,7 @@ class GameStatsController < ApplicationController
             @game_stat.destroy
             head :no_content
           else
-            render json: { error: "Unauthorized: Cannot delete stat" }, status: :unauthorized
+            render json: { error: "Unauthorized: Cannot delete or update stat" }, status: :unauthorized
           end
         else 
           render json: { error: "Stat not found" }, status: :not_found
