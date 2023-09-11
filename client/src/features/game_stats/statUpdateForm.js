@@ -12,6 +12,8 @@ function StatUpdateForm() {
   const statToUpdate = stats.find((stat) => stat.id === parseInt(statId));
   const error = useSelector((state) => state.stats.error) || [];
 
+  console.log(error)
+
   useEffect(() => {
     dispatch(fetchStats());
   }, [dispatch]);

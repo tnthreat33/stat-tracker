@@ -46,4 +46,14 @@
     font-size: 16px;
     margin-top: 10px;
   }
+  .error-alert {
+    background-color: #0c0c0d; /* Red or any color you prefer for error messages */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+   
+    font-size: 10px;
+  }
   

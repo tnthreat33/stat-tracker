@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import { useNavigate} from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { deleteGameStat } from "./statSlice";
 import "../teams/yourTeam.css";
@@ -8,14 +8,28 @@ import "../teams/yourTeam.css";
 function Stat({ stats }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+  const [error, setError] = useState(null);
+
+  console.log(error)
 
   if (!stats) {
     return <div>Loading...</div>;
   }
 
-  const handleDeleteStat = (statId) => {
-    dispatch(deleteGameStat(statId));
+  const handleDeleteStat = async (statId) => {
+    try {
+      const response = await dispatch(deleteGameStat(statId));
+      console.log("Delete Response:", response); // Log the response for debugging
+      // Check if the response indicates an unauthorized error
+      if (response.payload && response.payload.error) {
+        setError(response.payload.error); // Access the error message from the payload
+        return;
+      }
+      // Delete was successful, clear any previous error
+      setError(null);
+    } catch (error) {
+      console.error("Error deleting stat:", error);
+    }
   };
 
   const groupedStats = {};
@@ -29,6 +43,7 @@ function Stat({ stats }) {
 
   return (
     <div className="your-team">
+     
       
         {Object.keys(groupedStats).map((playerId) => (
           <div key={playerId}>
@@ -76,14 +91,15 @@ function Stat({ stats }) {
                     <td>{stat.runs}</td>
                     <td>{stat.stolen_base}</td>
                     <td>
+                    {error &&  (
+              <div className="error-alert">{error}</div>
+          )}
                       <button
                         className="your-team-button"
                         onClick={() => handleDeleteStat(stat.id)}
                       >
                         Delete
                       </button>
-                      
-                      
                       <button
                         className="your-team-button"
                         onClick={() => {
@@ -92,7 +108,7 @@ function Stat({ stats }) {
                       >
                         Update
                       </button>
-                    </td>
+                  </td>
                   </tr>
                 ))}
               </tbody>

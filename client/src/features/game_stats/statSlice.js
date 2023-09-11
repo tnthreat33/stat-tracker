@@ -49,14 +49,15 @@ export const fetchStats = createAsyncThunk("stats/fetchStats", () => {
       }
     }
   );
-  export const deleteGameStat = createAsyncThunk("stats/deleteGameStat", async (statId) => {
+  export const deleteGameStat = createAsyncThunk("stats/deleteGameStat", async (statId, { rejectWithValue }) => {
     try {
       const response = await fetch(`/game_stats/${statId}`, {
         method: "DELETE",
       });
   
       if (!response.ok) {
-        throw new Error("Failed to delete game stat");
+        const errorData = await response.json();
+        return rejectWithValue(errorData); 
       }
   
       return statId; 
@@ -157,7 +158,7 @@ const statSlice = createSlice({
   },
   }})
 
-
+  
 export const { statAdded, statRemoved } = statSlice.actions;
 
 export default statSlice.reducer;
