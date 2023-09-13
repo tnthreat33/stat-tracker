@@ -10,9 +10,9 @@ function StatUpdateForm() {
   const navigate = useNavigate();
   const stats = useSelector((state) => state.stats.entities);
   const statToUpdate = stats.find((stat) => stat.id === parseInt(statId));
-  const error = useSelector((state) => state.stats.error) || [];
+  const error = useSelector((state)=> state.stats.error)
 
-  console.log(error)
+  
   useEffect(() => {
     dispatch(fetchStats());
   }, [dispatch]);
@@ -56,6 +56,9 @@ function StatUpdateForm() {
       }
     });
   };
+ 
+  
+  
 
   const availableGames = [...new Map(stats.map((stat) => [stat.game_id, stat])).values()];
 
@@ -70,8 +73,8 @@ function StatUpdateForm() {
   return (
     <div>
     <h3>
-  {error && error.error.length > 0 && (
-    <div className="error-alert-update">!! {error.error} !!</div>
+  {error && error.length > 0 && (
+    <div className="error-alert-update">!! {error} !! </div>
   )}
 </h3>
     <div className="form-container"> 

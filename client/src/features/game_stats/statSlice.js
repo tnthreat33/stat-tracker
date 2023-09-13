@@ -144,10 +144,13 @@ const statSlice = createSlice({
     }
     state.error = null;
   },
-  [updateGameStat.rejected](state, action){
-    state.status= "idle";
-    state.error = action.payload;
+  [updateGameStat.rejected](state, action) {
+    state.status = "idle";
+    
+    state.error = "Can't Update Stats For Other Team's Players";
+    
   },
+  
   [fetchPlayerGameStats.fulfilled](state, action) {
     state.playerGameStats = action.payload; 
     state.error = null;

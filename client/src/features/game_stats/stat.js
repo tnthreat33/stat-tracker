@@ -10,7 +10,7 @@ function Stat({ stats }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
-  console.log(error)
+  
 
   if (!stats) {
     return <div>Loading...</div>;
