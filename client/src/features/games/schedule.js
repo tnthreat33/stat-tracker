@@ -15,7 +15,7 @@ function Schedule() {
   }, [dispatch, userId]);
 
   if (!userTeams || userTeams.length === 0) {
-    return <p>Loading...</p>;
+    return <p>No games added yet</p>;
   }
 
   return (

@@ -15,7 +15,7 @@ function Dashboard (){
       }, [dispatch, userId]);
 
       if (!userTeams || userTeams.length === 0) {
-        return <div>Loading...</div>; // You can display a loading message or handle this case as you prefer
+        return <div>No players or games added</div>; // You can display a loading message or handle this case as you prefer
     }
     
       function findPlayerWithMostHits(players) {
