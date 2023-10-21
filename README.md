@@ -75,7 +75,7 @@ The frontend interacts with the backend API through various endpoints. Here are 
 - ...
 
 
-Feel free to modify and adapt this content according to your project's specific details and needs.
+
 
 
 
