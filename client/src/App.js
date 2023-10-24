@@ -37,9 +37,7 @@ function App() {
       });
   }, [dispatch]);
   
-
   if (!currentUser) return <LoginForm  />;
-
 
   return (
     <div className="App">
