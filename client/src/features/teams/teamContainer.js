@@ -22,9 +22,13 @@ function TeamContainer() {
       {isInputVisible && <TeamInput />}
 
       <div className="team-container">
-        {teams.map((team) => (
-          <Team key={team.id} team={team} />
-        ))}
+        {Array.isArray(teams) ? (
+          teams.map((team) => (
+            <Team key={team.id} team={team} />
+          ))
+        ) : (
+          <p>No teams available.</p>
+        )}
       </div>
     </div>
   );
