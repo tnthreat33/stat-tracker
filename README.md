@@ -59,7 +59,7 @@ Here's an overview of the frontend components used:
 - **App**: The core component responsible for structuring the entire application and managing routing. It interacts with the backend API, handling data related to game statistics, teams, players, and user authentication.
 - **NavBar**: Renders the navigation bar, providing links to different pages within the application and offering access to the user's profile information.
 - **Home**: Displays the main landing page, presenting a list of available game statistics and teams. Users can navigate from here to different sections of the app.
-- ...
+
 
 
 ## API Endpoints
@@ -72,7 +72,7 @@ The frontend interacts with the backend API through various endpoints. Here are 
 - **GET /auth**: Retrieves the current user's information for authentication.
 - **DELETE /logout**: Ends the current user's session, effectively logging them out.
 - **GET /teams/:id**: Retrieves detailed information about a specific team identified by `:id`.
-- ...
+
 
 
 
