@@ -61,7 +61,6 @@ Here's an overview of the frontend components used:
 - **Home**: Displays the main landing page, presenting a list of available game statistics and teams. Users can navigate from here to different sections of the app.
 
 
-
 ## API Endpoints
 
 
