@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :teams, only: [:index, :create]
-  resources :game_stats 
+  resources :game_stats do
+    collection do
+      post 'import_csv'
+    end
+  end
   resources :users, only: [:show, :create]
   resources :players, only: [:create]
   resources :games, only: [:create, :index]
