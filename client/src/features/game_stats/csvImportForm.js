@@ -1,5 +1,4 @@
 // client/src/components/CSVImportForm.js
-
 import React, { useState } from 'react';
 
 const CSVImportForm = ({ onImport }) => {
@@ -29,9 +28,11 @@ const CSVImportForm = ({ onImport }) => {
   };
 
   return (
-    <div >
+    <div>
       <input type="file" accept=".csv" onChange={handleFileChange} />
-      <button className="new-game-button" onClick={handleImport}>Import CSV</button>
+      <button className="new-game-button" onClick={handleImport}>
+        Import CSV
+      </button>
     </div>
   );
 };
