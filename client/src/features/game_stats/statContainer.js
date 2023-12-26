@@ -5,6 +5,7 @@ import { fetchStats } from "./statSlice";
 import { fetchGames } from "../games/gamesSlice";
 import Stat from "./stat";
 import StatInput from "./statsInput";
+import CSVImportForm from "./csvImportForm";
 
 
 function StatContainer() {
@@ -22,8 +23,10 @@ function StatContainer() {
         <h1>All stats</h1>
         
         <button className="new-game-button" onClick={() => setInputVisible(!isInputVisible)}>
-          {isInputVisible ? "Close" : "Add New Stat"}
+          {isInputVisible ? "Close" : "Manually Add New Stat"}
         </button>
+        <CSVImportForm /> 
+       
         
         {isInputVisible && <StatInput stats={stats} />} 
      

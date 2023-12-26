@@ -14,7 +14,7 @@ const CSVImportForm = ({ onImport }) => {
     formData.append('file', file);
 
     // Make a POST request to your backend endpoint for CSV import
-    fetch('/games/import_csv', {
+    fetch('/game_stats/import_csv', {
       method: 'POST',
       body: formData,
     })
@@ -29,9 +29,9 @@ const CSVImportForm = ({ onImport }) => {
   };
 
   return (
-    <div>
+    <div >
       <input type="file" accept=".csv" onChange={handleFileChange} />
-      <button onClick={handleImport}>Import CSV</button>
+      <button className="new-game-button" onClick={handleImport}>Import CSV</button>
     </div>
   );
 };
