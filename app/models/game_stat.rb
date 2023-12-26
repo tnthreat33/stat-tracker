@@ -15,6 +15,13 @@ class GameStat < ApplicationRecord
   belongs_to :game
   belongs_to :player
 
+  def self.import_csv(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      # Process each row and create/update game stats as needed
+      # For example:
+      GameStat.create(player_id: row['player_id'], game_id: row['game_id'], points: row['points'])
+    end
+  end
   
 
 end
