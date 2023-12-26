@@ -16,10 +16,34 @@ class GameStat < ApplicationRecord
   belongs_to :player
 
   def self.import_csv(file)
-    CSV.foreach(file.path, headers: true) do |row|
-      # Process each row and create/update game stats as needed
-      # For example:
-      GameStat.create(player_id: row['player_id'], game_id: row['game_id'], points: row['points'])
+    begin
+      ActiveRecord::Base.transaction do
+        CSV.foreach(file.path, headers: true) do |row|
+          # Process each row and create/update game stats as needed
+          GameStat.create!(
+            game_id: row['game_id'],
+            player_id: row['player_id'],
+            played: row['played'],
+            batting_average: row['batting_average'],
+            at_bat: row['at_bat'],
+            hits: row['hits'],
+            runs: row['runs'],
+            RBI: row['RBI'],
+            stolen_base: row['stolen_base'],
+            field_error: row['field_error'],
+            fielding_percentage: row['fielding_percentage'],
+            innings_pitched: row['innings_pitched'],
+            ERA: row['ERA'],
+            K: row['K']
+          )
+        end
+      end
+    rescue CSV::MalformedCSVError => e
+      # Handle CSV format errors
+      raise "CSV format error: #{e.message}"
+    rescue StandardError => e
+      # Handle other errors
+      raise "Error importing game stats: #{e.message}"
     end
   end
   
