@@ -32,7 +32,7 @@ The backend consists of the following models:
 - **Game**: Represents a game. Games can have many game stats and many players.
 - **Player**: Represents a player. Players can have many game stats and many games.
 - **Team**: Represents a team. Teams can have many games and many players.
-- **Game Stat**: Represents a single stat made by a player for a specific game. Game stats belong to both players and games.
+- **Game Stat**: Represents a single stat made by a player for a specific game. Game stats belong to both players and games..
 
 
 ## Getting Started
