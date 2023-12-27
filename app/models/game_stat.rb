@@ -22,22 +22,26 @@ class GameStat < ApplicationRecord
           player_name = row['player_name']
           player = Player.find_by("LOWER(name) = ?", player_name.downcase)
 
-          GameStat.create!(
-            game_id: row['game_id'],
-            player_id: player.id,
-            played: row['played'],
-            batting_average: row['batting_average'],
-            at_bat: row['at_bat'],
-            hits: row['hits'],
-            runs: row['runs'],
-            RBI: row['RBI'],
-            stolen_base: row['stolen_base'],
-            field_error: row['field_error'],
-            fielding_percentage: row['fielding_percentage'],
-            innings_pitched: row['innings_pitched'],
-            ERA: row['ERA'],
-            K: row['K']
-          )
+          if player
+            GameStat.create!(
+              game_id: row['game_id'],
+              player_id: player.id,
+              played: row['played'],
+              batting_average: row['batting_average'],
+              at_bat: row['at_bat'],
+              hits: row['hits'],
+              runs: row['runs'],
+              RBI: row['RBI'],
+              stolen_base: row['stolen_base'],
+              field_error: row['field_error'],
+              fielding_percentage: row['fielding_percentage'],
+              innings_pitched: row['innings_pitched'],
+              ERA: row['ERA'],
+              K: row['K']
+            )
+          else
+            Rails.logger.error("Player not found with name: #{player_name}")
+          end
         end
       end
     rescue CSV::MalformedCSVError => e
@@ -45,9 +49,10 @@ class GameStat < ApplicationRecord
       raise "CSV format error: #{e.message}"
     rescue StandardError => e
       # Handle other errors
+      Rails.logger.error("Error importing game stats: #{e.message}")
       raise "Error importing game stats: #{e.message}"
     end
   end
+end
   
 
-end
