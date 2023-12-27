@@ -19,7 +19,9 @@ class GameStat < ApplicationRecord
     begin
       ActiveRecord::Base.transaction do
         CSV.foreach(file.path, headers: true) do |row|
-          # Process each row and create/update game stats as needed
+          player_name = row['player_name']
+          player = Player.find_by("LOWER(name) = ?", player_name.downcase)
+          
           GameStat.create!(
             game_id: row['game_id'],
             player_id: row['player_id'],
