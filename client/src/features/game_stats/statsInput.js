@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addGameStat } from "./statSlice";
 import Dropdown from "./dropdown";
+import CSVImportForm from "./csvImportForm";
 import "../games/gameInput.css"; 
 
 function StatInput({ stats }) {
@@ -220,6 +221,10 @@ function StatInput({ stats }) {
         <div className="ui input">
           <label>Player:</label>
           <Dropdown options={availablePlayers} onSelect={handlePlayerSelect} />
+        </div>
+
+        <div>
+          <CSVImportForm /> 
         </div>
 
         <button className="ui red button" type="submit">

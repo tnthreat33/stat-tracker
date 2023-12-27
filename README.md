@@ -4,7 +4,7 @@
 This is a web application that allows users to keep track of their teams' stats and the stats of their competition. The frontend of the application is built using React, while the backend is developed with Ruby on Rails. The application utilizes a RESTful API to handle user authentication, schedule management, and game stat functionality.
 
 Demo: https://youtu.be/740gQc5dzzo
-
+    -to see demo teams use login - username:john123 and password:123
 ## Features
 
 
@@ -32,7 +32,7 @@ The backend consists of the following models:
 - **Game**: Represents a game. Games can have many game stats and many players.
 - **Player**: Represents a player. Players can have many game stats and many games.
 - **Team**: Represents a team. Teams can have many games and many players.
-- **Game Stat**: Represents a single stat made by a player for a specific game. Game stats belong to both players and games.
+- **Game Stat**: Represents a single stat made by a player for a specific game. Game stats belong to both players and games..
 
 
 ## Getting Started

@@ -1,3 +1,5 @@
+require 'csv'
+
 class GameStatsController < ApplicationController
     
     def index
@@ -57,6 +59,15 @@ class GameStatsController < ApplicationController
           render json: @game_stats, status: :accepted
         else 
           render json: { error: "Player not found" }, status: :not_found
+        end
+      end
+
+      def import_csv
+        begin
+          GameStat.import_csv(params[:file])
+          render json: { success: 'CSV imported successfully' }, status: :ok
+        rescue StandardError => e
+          render json: { error: "Error importing game stats: #{e.message}" }, status: :unprocessable_entity
         end
       end
       

@@ -14,6 +14,9 @@ end
       render json: { error: game.errors.full_messages }, status: :unprocessable_entity
     end
   end
+
+  
+
   private
   def game_params
     params.permit(:away_team_id, :home_team_id, :date, :city, :state)
