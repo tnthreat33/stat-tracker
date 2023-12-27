@@ -21,10 +21,10 @@ class GameStat < ApplicationRecord
         CSV.foreach(file.path, headers: true) do |row|
           player_name = row['player_name']
           player = Player.find_by("LOWER(name) = ?", player_name.downcase)
-          
+
           GameStat.create!(
             game_id: row['game_id'],
-            player_id: row['player_id'],
+            player_id: player.id,
             played: row['played'],
             batting_average: row['batting_average'],
             at_bat: row['at_bat'],
