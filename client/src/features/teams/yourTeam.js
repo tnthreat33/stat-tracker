@@ -13,7 +13,9 @@ function YourTeam() {
   const playerStats = useSelector((state)=> state.stats.playerGameStats)
   
  
- 
+ console.log(userTeams)
+
+
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
   }, [dispatch, userId]);
@@ -61,6 +63,7 @@ function YourTeam() {
           <table>
             <thead>
               <tr>
+                <th> photo </th>
                 <th>Jersey Number</th>
                 <th>Name</th>
                 <th>Position</th>
@@ -80,6 +83,11 @@ function YourTeam() {
             <tbody>
               {userTeam.players.map((player) => (
                 <tr key={player.id}>
+                  <td>
+                     {player.image && (
+                      <img src={player.image} alt={`Player ${player.name} Image`} style={{ width: '50px', height: '50px' }} />
+                      )}
+                  </td>
                   <td>{player.jersey_number}</td>
                   <td>{player.name}</td>
                   <td>{player.position}</td>

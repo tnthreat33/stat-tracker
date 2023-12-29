@@ -11,6 +11,7 @@ function PlayerInput({ team }) {
   const [graduation_year, setGradYear] = useState("");
   const [dominate_hand, setDominateHand] = useState("");
   const [jersey_number, setJerseyNumber] = useState("");
+  const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const error = useSelector((state) => state.players.error) || [];
   const navigate = useNavigate();
@@ -31,6 +32,9 @@ function PlayerInput({ team }) {
   function handleJerseyNumberChange(event) {
     setJerseyNumber(event.target.value);
   }
+  function handleImageChange(event) {
+    setImage(event.target.value);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,6 +45,7 @@ function PlayerInput({ team }) {
       graduation_year,
       dominate_hand,
       jersey_number,
+      image,
       team_id: id,
     };
 
@@ -58,6 +63,8 @@ function PlayerInput({ team }) {
       setDominateHand("");
       setGradYear("");
       setJerseyNumber("");
+      setImage("")
+      console.log(newPlayer)
     } catch (error) {
       if (error.response && error.response.status === 422) {
         console.log(error);
@@ -120,6 +127,17 @@ function PlayerInput({ team }) {
               name="name"
               value={jersey_number}
               onChange={handleJerseyNumberChange}
+            />
+          </label>
+        </div>
+        <div className="ui input"> 
+          <label>
+            Player Photo
+            <input
+              type="text"
+              name="name"
+              value={image}
+              onChange={handleImageChange}
             />
           </label>
         </div>

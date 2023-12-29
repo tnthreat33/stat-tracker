@@ -1,13 +1,13 @@
 import React from 'react';
 
 function PlayerGameStats({ playerStats, team }) {
-  
+  console.log(playerStats[0].player)
 
   return (
     <div className="your-team">
       {playerStats.length > 0 ? (
         <>
-          <h3>{playerStats[0].player.name} - Game Stats</h3>
+          <h3>insert photo here {playerStats[0].player.name} - Game Stats</h3>
           <table>
             <thead>
               <tr>

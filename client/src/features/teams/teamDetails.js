@@ -37,6 +37,7 @@ function TeamDetails() {
       <table>
         <thead>
           <tr>
+            <th> </th>
             <th>Jersey Number</th>
             <th>Name</th>
             <th>Position</th>
@@ -47,6 +48,9 @@ function TeamDetails() {
         <tbody>
           {team.players.map((player) => (
             <tr key={player.id}>
+              <td>
+                <img src={player.image} alt="Player Image" style={ {width: '50px', height: '50px' }}/>
+              </td>
               <td>{player.jersey_number}</td>
               <td>{player.name}</td>
               <td>{player.position}</td>
