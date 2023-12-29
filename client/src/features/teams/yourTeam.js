@@ -14,7 +14,7 @@ function YourTeam() {
   
  
  console.log(userTeams)
- 
+
 
   useEffect(() => {
     dispatch(fetchUserTeam(userId));
@@ -83,7 +83,11 @@ function YourTeam() {
             <tbody>
               {userTeam.players.map((player) => (
                 <tr key={player.id}>
-                  <td>{player.image}</td>
+                  <td>
+                     {player.image && (
+                      <img src={player.image} alt={`Player ${player.name} Image`} style={{ width: '50px', height: '50px' }} />
+                      )}
+                  </td>
                   <td>{player.jersey_number}</td>
                   <td>{player.name}</td>
                   <td>{player.position}</td>
