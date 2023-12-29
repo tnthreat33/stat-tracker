@@ -67,9 +67,9 @@
     font-size: 20px;
   }
   h3 img {
-    width: 50px; /* Adjust the width as needed */
-    height: 50px; /* Adjust the height as needed */
-    margin-right: 10px; /* Optional: Add some spacing between the image and text */
+    width: 50px; 
+    height: 50px; 
+    margin-right: 10px; 
   }
   h3 {
     text-align: center;
