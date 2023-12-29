@@ -10,7 +10,7 @@ function Stat({ stats }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
-  console.log(stats[0])
+  
 
   if (!stats) {
     return <div>Loading...</div>;
@@ -48,6 +48,7 @@ function Stat({ stats }) {
         {Object.keys(groupedStats).map((playerId) => (
           <div key={playerId}>
             <h3>
+              <img src={groupedStats[playerId][0].player.image} alt="Player Image" />
               {groupedStats[playerId][0].player.name} -{" "}
               {groupedStats[playerId][0].player.team_name}
             </h3>

@@ -79,6 +79,7 @@ return (
               title="Most Hits"
               playerName={topPlayerForHits.name}
               seasonStat={topPlayerForHits.season.season_hits_average}
+              playerImage={topPlayerForHits.image}
             />
           </div>
         )}
@@ -88,6 +89,7 @@ return (
               title="Best Batting Average"
               playerName={topPlayerForBattingAverage.name}
               seasonStat={topPlayerForBattingAverage.season.batting_average}
+              playerImage={topPlayerForBattingAverage.image}
             />
           </div>
         )}
@@ -97,6 +99,7 @@ return (
               title="Lowest ERA"
               playerName={topPlayerForERA.name}
               seasonStat={topPlayerForERA.season.season_era}
+              playerImage={topPlayerForERA.image}
             />
           </div>
         )}
