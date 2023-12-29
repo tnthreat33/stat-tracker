@@ -13,7 +13,6 @@ function TeamContainer() {
     dispatch(fetchTeams());
   }, [dispatch]);
 
-  console.log(teams)
 
   return (
     <div>
