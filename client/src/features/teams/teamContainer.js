@@ -11,7 +11,9 @@ function TeamContainer() {
 
   useEffect(() => {
     dispatch(fetchTeams());
-  console.log(teams)}, [dispatch]);
+  }, [dispatch]);
+
+  console.log(teams)
 
   return (
     <div>
