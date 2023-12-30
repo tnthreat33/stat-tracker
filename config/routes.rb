@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/teams/:id", to: "teams#show"
   get "/game_stats/player/:id", to: "game_stats#player_stat"
+  post "/chat", to: "chat#create"
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

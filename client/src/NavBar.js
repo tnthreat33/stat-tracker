@@ -35,6 +35,9 @@ function NavBar({ user }) {
           <li>
             <NavLink to="/teams">All Teams</NavLink>
           </li>
+          <li>
+            <NavLink to="/chat">Ask Chat</NavLink>
+          </li>
         </ul>
       </nav>
     </div>
