@@ -13,6 +13,7 @@ import NavBar from './NavBar';
 import "./App.css"
 import YourTeam from "./features/teams/yourTeam";
 import Schedule from "./features/games/schedule";
+import Chatbox from "./features/chatGPT/chatbox";
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/teams" element={<TeamsContainer />} />
         <Route path="/teams/:teamName" element={<TeamDetails/>} />
         <Route path="/stats/update/:statId" element={<StatUpdateForm/>} />
+        <Route path="/chat" element={<Chatbox/>} />
         <Route path="/" element={<Dashboard currentUser={currentUser}/>}/>
         </Routes>
       
