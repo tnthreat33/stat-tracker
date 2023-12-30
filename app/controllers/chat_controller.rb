@@ -10,7 +10,7 @@ class ChatController < ApplicationController
       # Use your ChatGPT API key and endpoint
       response = HTTParty.post('https://api.openai.com/v1/chat/completions', {
         headers: {
-          'Authorization' => "Bearer #{api_key}",
+          'Authorization' => "Bearer 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",
           'Content-Type' => 'application/json',
         },
         body: { messages: [{ role: 'system', content: 'You are a helpful assistant.' }, { role: 'user', content: user_query }] }.to_json,

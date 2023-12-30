@@ -5,7 +5,7 @@ const Chatbox = () => {
   const [query, setQuery] = useState('');
   
 const sendQuery = (query) => {
-  fetch('http://your-rails-api-endpoint.com/chat', {
+  fetch('/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,6 +31,7 @@ const sendQuery = (query) => {
     <div>
       <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
       <button onClick={handleSendQuery}>Send</button>
+      
     </div>
   );
 };
